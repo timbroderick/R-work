@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1457735275697.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F19170BA",
+    "lastKnownWriteTime" : 4299350528,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "education_data_raw",
+        "contentUrl" : "content?title=education_data_raw&file=4a67e3d9af1c490b93b1e47c5485ade4.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 41,
+        "totalObservations" : 7804,
+        "variables" : 41
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

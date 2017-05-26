@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1457456563969.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "73ABE793",
+    "lastKnownWriteTime" : 388,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "d426rdpeu2",
+        "caption" : "education_data_raw",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=education_data_raw&cache_key=d426rdpeu2",
+        "displayedObservations" : "7804",
+        "environment" : "",
+        "object" : "education_data_raw",
+        "totalObservations" : "7804",
+        "variables" : "41"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

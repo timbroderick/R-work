@@ -1,0 +1,8 @@
+Car Insurance Data and Analysis
+
+This is the data and analysis for the story "Minority Neighborhoods Pay Higher Car Insurance Premiums Than White Areas with the Same Risk." In the analysis folder there is an R Markdown notebook that will run our analysis of the data.
+
+It includes risk data from Insurance commissioners in four states, Illinois, Missouri, California, and Texas. It also includes over 100,000 bodily injury and property damage premium quotes for the top insurers operating in that state.
+
+Related Story:
+https://www.propublica.org/article/minority-neighborhoods-higher-car-insurance-premiums-white-areas-same-risk

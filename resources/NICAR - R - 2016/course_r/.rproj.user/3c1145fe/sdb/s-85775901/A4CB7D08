@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1457737700882.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A4CB7D08",
+    "lastKnownWriteTime" : 140735091614976,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "education_data_clean",
+        "contentUrl" : "content?title=education_data_clean&file=0e631d4ffcba402488badd467589dfcb.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 42,
+        "totalObservations" : 7804,
+        "variables" : 42
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

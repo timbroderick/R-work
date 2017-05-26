@@ -1,0 +1,99 @@
+# http://paldhous.github.io/NICAR/2017/r-to-javascript.html
+
+# load required packages
+library(readr)
+library(dplyr)
+library(htmlwidgets)
+library(highcharter)
+library(RColorBrewer)
+library(leaflet)
+library(rgdal)
+library(dygraphs)
+library(quantmod)
+library(DT)
+
+# load data
+nations <- read_csv("nations.csv") 
+
+# process data
+gdp_regions <- nations %>%
+  mutate(gdp = gdp_percap * population,
+         gdp_tn = gdp/1000000000000) %>%
+  group_by(region, year) %>%
+  summarize(total_gdp_tn = sum(gdp_tn, na.rm = TRUE))
+
+# basic symbol-and-line chart, default settings
+highchart() %>%
+  hc_add_series_df(data = gdp_regions,
+                   type = "line",
+                   x = year,
+                   y = total_gdp_tn, 
+                   group = region)
+
+# define color palette
+cols <- brewer.pal(7, "Set1")
+
+highchart() %>%
+  hc_add_series_df(data = gdp_regions,
+                   type = "line",
+                   x = year,
+                   y = total_gdp_tn, 
+                   group = region) %>%
+  hc_colors(cols) %>%
+  hc_xAxis(title = list(text="Year")) %>%
+  hc_yAxis(title = list(text="GDP ($ trillion)")) %>%
+  hc_plotOptions(series = list(marker = list(symbol = "circle")))
+
+# You can save you code as an R object using the assignment operator
+gdp_regions_chart <- highchart() %>%
+  hc_add_series_df(data = gdp_regions,
+                   type = "line",
+                   x = year,
+                   y = total_gdp_tn, 
+                   group = region) %>%
+
+#-------
+Dygraphs
+
+# retrieve data for each company
+google <- getSymbols("GOOG", src = "yahoo", auto.assign = FALSE)
+facebook <- getSymbols("FB", src = "yahoo", auto.assign = FALSE)
+amazon <- getSymbols("AMZN", src = "yahoo", auto.assign = FALSE)
+
+# combine adjusted prices into a single xts object
+companies <- cbind(google$GOOG.Adjusted, facebook$FB.Adjusted, amazon$AMZN.Adjusted)
+
+# rename the variables, so that they displace nicely in the legend
+names(companies) <- c("Google","Facebook","Amazon")
+
+# draw a stock chart
+dygraph(companies)
+
+# customize the chart
+dygraph(companies, ylab = "Adjusted close") %>%
+  dyOptions(colors = brewer.pal(3, "Set1")) %>%
+  dyRangeSelector() %>%
+  dyAxis("x", drawGrid = FALSE)
+
+# filter data for 2014 only
+longevity <- nations %>%
+  filter(year == 2014 & !is.na(life_expect)) %>%
+  select(country, life_expect, income, region) %>%
+  arrange(desc(life_expectancy))
+
+# rename the variables for display in the table
+names(longevity) <- c("Country","Income group","Region","Life expectancy")
+
+# Make a table
+datatable(longevity)
+
+# Customize it as a datatable
+
+datatable(longevity,  
+          rownames = FALSE) %>% 
+          formatStyle("Life expectancy",
+                      color = "red",
+                      fontWeight = "bold")
+
+
+
