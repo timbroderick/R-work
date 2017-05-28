@@ -6,65 +6,86 @@ df <- read_csv("dfCrime.csv")
 # Let's get the colummn names
 names(df)
 
-?plot
-xrange <- c(1,12)
-yrange <- c(0,60)
+# let's start with a basic line chart
+plot(df$Total_RTR_incidents, type="b",
+     xlab = "Year, Quarter", 
+     ylab = "Incidents",
+     main = "Total RTR incidents")
 
+# right off the bat, there's a problem with the 
+# year, quarter labels. it's taking the index number
+# of the row and we can't assign labels in the basic plot
+# We also can't set x and y ranges
+
+# To overcome this, we have to build the chart
+# in steps
+
+# first we set the x and y range
+# x range equal the number of rows in Year_Quarter
+# NROW all caps counts those
+
+xrange <- range(1,NROW(df$Year_Quarter))
+xrange
+# then we need the greater of either SOF, UOF or Transitions
+# Range finds that for us
+yrange <- range(0,df$SOF_only,df$UOF_only,df$Total_transitions)
+yrange
+
+# set up the plot with x and y range, n = no chart type
+# and axes = false
 plot(xrange, yrange, type="n", axes=FALSE,
      xlab = "Year, Quarter", ylab = "Incidents",
      main = "Total RTR incidents")
 
-lines(df$Total_RTR_incidents, type = "o", col = "red", lwd=2)
-lines(df$SOF_only, type = "l", col = "orange", lwd=2)
-lines(df$UOF_only, type = "l", col = "blue", lwd=2)
-lines(df$Total_transitions, type = "l", col = "darkgreen", lwd=2)
+# add the lines individually
+# line type is b, or lines and dots
+# pch is a filled dot, lwd is line size of 2 (1 is default)
+lines(df$SOF_only, type = "b", pch=19, col = "orange", lwd=2)
+lines(df$UOF_only, type = "b", pch=19, col = "blue", lwd=2)
+lines(df$Total_transitions, type = "b", pch=19, col = "darkgreen", lwd=2)
 
-#?axis
-axis(1, las=1, at=2*0:xrange[2], labels=FALSE)
-#axis(1, at=1:5, lab=c("Mon","Tue","Wed","Thu","Fri"))
+# now add the axis - x first (1)
+# las = 1 (labels horizontal)
+# at is the number of ticks, which is the second number in
+# xrange. So ticks from 1 to 12
+axis(1, las=1, at=1:xrange[2], 
+     tck = .05, # set the ticks to be inside plot
+     # Since we're creating custom labels, we need 12 of them
+     # so "" at 1, then 2014 2Q and etc
+     # notice we can split the lines with \n
+     # and the x label adjusts down to accomodate
+     lab=c("","2014\n2Q","","2014\n4Q","","2015\n2Q","","2015\n4Q","","2016\n2Q","","2016\n4Q") )
+# for our y axis, set it to count by 5 for the range
+# of yrange. LAS labels horizontal. ticks all the way 
+# across (1) and the line type as dots lty=3
+axis(2, las=1, at=5*0:yrange[2], tck = 1, lty=3)
 
-axis(2, las=1, at=10*0:yrange[2])
+# Create a legend at top, left (x=1, y=yrange)
+# (cex) makes it 80% of the base size
+legend(1, yrange[2], c("SOF Only","UOF only", "Transition"), 
+       cex=0.8, col=c("Orange","blue","darkgreen"), pch=19, lwd=2)
+
+#----Set up plot for print and online --------
+dev.cur()
+# note that we had to make the width wider than 4
+# to accomodate the x labels
+#pdf(file="myplotLines.pdf", width = 6, height = 4) 
+png(filename = "myplotlines.png",width = 600, height = 400, units = "px")
+#-----Insert plot here -------------
+
+plot(xrange, yrange, type="n", axes=FALSE,
+     xlab = "Year, Quarter", ylab = "Incidents",
+     main = "Total RTR incidents")
+lines(df$SOF_only, type = "b", pch=19, col = "orange", lwd=2)
+lines(df$UOF_only, type = "b", pch=19, col = "blue", lwd=2)
+lines(df$Total_transitions, type = "b", pch=19, col = "darkgreen", lwd=2)
+axis(1, las=1, at=1:xrange[2], tck = .05, lab=c("","2014\n2Q","","2014\n4Q","","2015\n2Q","","2015\n4Q","","2016\n2Q","","2016\n4Q") )
+axis(2, las=1, at=5*0:yrange[2], tck = 1, lty=3)
+legend(1, yrange[2], c("SOF Only","UOF only", "Transition"), 
+       cex=0.8, col=c("Orange","blue","darkgreen"), pch=19, lwd=2)
 
 
+#----- End plot --------------
+dev.off() 
 
-# -----------
-
-# Define 2 vectors
-cars <- c(1, 3, 6, 4, 9)
-trucks <- c(2, 5, 4, 5, 12)
-
-# Calculate range from 0 to max value of cars and trucks
-g_range <- range(0, cars, trucks)
-
-# Graph autos using y axis that ranges from 0 to max 
-# value in cars or trucks vector.  Turn off axes and 
-# annotations (axis labels) so we can specify them ourself
-plot(cars, type="o", col="blue", ylim=g_range, 
-     axes=FALSE, ann=FALSE)
-
-# Make x axis using Mon-Fri labels
-axis(1, at=1:5, lab=c("Mon","Tue","Wed","Thu","Fri"))
-
-# Make y axis with horizontal labels that display ticks at 
-# every 4 marks. 4*0:g_range[2] is equivalent to c(0,4,8,12).
-axis(2, las=1, at=4*0:g_range[2])
-
-# Create box around plot
-box()
-
-# Graph trucks with red dashed line and square points
-lines(trucks, type="o", pch=22, lty=2, col="red")
-
-# Create a title with a red, bold/italic font
-title(main="Autos", col.main="red", font.main=4)
-
-# Label the x and y axes with dark green text
-title(xlab="Days", col.lab=rgb(0,0.5,0))
-title(ylab="Total", col.lab=rgb(0,0.5,0))
-
-# Create a legend at (1, g_range[2]) that is slightly smaller 
-# (cex) and uses the same line colors and points used by 
-# the actual plots 
-legend(1, g_range[2], c("cars","trucks"), cex=0.8, 
-       col=c("blue","red"), pch=21:22, lty=1:2)
 

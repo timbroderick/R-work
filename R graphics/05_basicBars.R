@@ -92,3 +92,21 @@ barplot(counts, horiz=TRUE, cex.names=0.8,
 # or four lines of code. 
 # As we move forward and start working with ggplot2
 # they'll be even better.
+
+#----Set up plot for print and online --------
+dev.cur()
+# note that we had to make the width wider than 4
+# to accomodate the y labels
+pdf(file="myplotStackedBars.pdf", width = 6, height = 4) 
+#png(filename = "myplotStackedBars.png",width = 600, height = 400, units = "px")
+#-----Insert plot here -------------
+par(las=1)
+barplot(counts, horiz=TRUE, cex.names=0.8,
+        main="RTR incidents by year, quarter",
+        xlab = "Number of incidents",
+        col=c("darkgreen","darkblue","red"),
+        legend = rownames(counts),
+        args.legend = list(x ='bottomright', inset=0.01)
+)
+#----- End plot --------------
+dev.off() 
