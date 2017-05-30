@@ -21,10 +21,52 @@ abline(h=median(elgCrime$UOF_only), lty=2, lwd=2)
 # adds horizontal line for median UOF incidents which looks to be about 19
 abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
 # adds vertical red line for median RTR incidents, about 36
-abline(lm(elgCrime$UOF_only~elgCrime$Total_RTR_incidents))
-# adds a regression line, or a line approximating the running average
-# (anything above the line would be above average)
 
+
+fit <- lm(elgCrime$UOF_only~elgCrime$Total_RTR_incidents)
+summary(fit)
+# Lots to uppack here. Honestly, I am not qualified to
+# explain in detail these more advanced statistic measures. 
+# What follows is a very over-simplified explanation. 
+# Look at the last three lines. Generally, you want ...
+# A) your Adjusted R-square to be as close to 1.00 as possible
+#    here it's 0.6556, which means it's estimated that 
+#    about 66 percent of the observations can be explained by
+#    the relationship between the two data set
+#    Which makes sense - the more Totol RTR incidents there are
+#    the more you see UOF_only incidents
+# B) the p-value to be less that 0.05
+
+# HOWEVER: Don't expect too much out of these stats - we're using a very 
+# small dataset so it's not going to be very informative and may even
+# cause confusing results. Look at the portion labeled Coefficients:
+
+# C) Std. Error and t value. You want the two t values to be as large 
+#    as possible versus the std errors. It is for one line 
+#     and not the other. It's telling us that with only 12 datapoints, 
+#    it's not able to make any definitive predictions. It just
+#    doesn't have enough data to tell whether any new points added
+#    would likely fall along the regression line.
+# D) And that confusion carries on into the Pr(>|t|) or p-value. 
+#    It uses those T values and Error to compute the P-value
+#    The top one is well over 0.05 which isn't good, but the bottom one 
+#    is well under so much so that R has tagged it with *** 
+#    indicating it's significant
+# ------
+# Statistics is a science. Our purpose in graphing these
+# values out is to see how the data relates to the
+# regression line and maybe spot outliers. We will seldom use 
+# T values or R2 in our stories.
+# But there's nothing wrong in knowing about these things. And in fact
+# understanding when it's telling you that something's wrong can
+# be very useful.
+# Here's a link to a resource explaining what you see with the summary
+# https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R
+# If you want to learn more about statistics, let me know. There's a 
+# good textbook I can recommend.
+
+# add the regression line, or a line approximating the running average
+abline(fit)
 
 # Now, let's take a look at all three RTR categories
 # "Par" sets up the plot window to show three plots in 1 column (mfrow)
@@ -92,3 +134,4 @@ dev.off() # Then turn off dev and you can view the plot
 
 
 # --------------
+
