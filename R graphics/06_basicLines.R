@@ -3,8 +3,9 @@ library(readr)
 df <- read_csv("dfCrime.csv")
 
 # notice we loaded in the version of the data with the years column
-# Let's get the colummn names
+# Let's get the colummn names and summary data
 names(df)
+summary(df)
 
 # let's start with a basic line chart
 plot(df$Total_RTR_incidents, type="b",

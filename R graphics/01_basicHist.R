@@ -79,10 +79,11 @@ barplot(reg,col="wheat",main="Number of RTR incidents")
 boxplot(UOF_only~Total_RTR_incidents, data=elgCrime, col="red", xlab="Total RTR", ylab="UOF only", col.axis="blue",col.lab = "red")
 title(main = "UOF in Total RTR")
 # much like the histogram, we see the range of RTR incidents across the bottom
-# 10 RTR values are unique, 2 are the same (32) but here's what's different
+# 10 RTR values have one corresonding UOF value, but one - 32
+# has two corresponding UOF values - 18 and 21
 # Boxplot shows the mean of each "bin". Since all others have only 
 # one UOF value, they're flat. 32 has two values. The line shows the median 
-# and the red box shows the range of the values - in this case only two
+# of 19 and the red box shows the range of the values (18 and 21)
 
 # --------------
 

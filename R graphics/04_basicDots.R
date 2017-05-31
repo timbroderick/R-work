@@ -3,8 +3,9 @@ library(readr)
 df <- read_csv("dfCrime.csv")
 
 # notice we loaded in the version of the data with the years column
-# Let's get the colummn names
+# Let's get the colummn names and summary data
 names(df)
+summary(df)
 
 # Simple Dotplot - what is CEX? Seems to have something to do
 # with type size.

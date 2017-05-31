@@ -135,3 +135,4 @@ dev.off() # Then turn off dev and you can view the plot
 
 # --------------
 
+# there's a better way of doing multiple plots that we'll look at later

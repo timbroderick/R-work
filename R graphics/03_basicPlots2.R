@@ -3,8 +3,9 @@ library(readr)
 df <- read_csv("dfCrime.csv")
 
 # notice we loaded in the data with the years column
-# Let's get the colummn names
+# Let's get the colummn names and summary data
 names(df)
+summary(df)
 
 
 # Now I want to try and highlight the values in the scatter plot by their years
