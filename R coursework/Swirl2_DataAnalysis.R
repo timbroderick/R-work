@@ -241,3 +241,82 @@ xyplot(price~carat | color*cut, data = diamonds, pch = 20, xlab = myxlab, ylab =
 
 # that was 6, Lattice plotting system - very cool
 # now 7, working with colors
+library(swirl)
+swirl()
+Tim
+3
+1
+7
+2
+sample(colors(),10)
+sink()
+pal <- colorRamp(c("red","blue"))
+pal(0)
+1
+1
+pal(1)
+2
+2
+2
+pal(seq(0,1,len=6))
+p1 <- colorRampPalette(c("red","blue"))
+p1(2)
+p1(6)
+0xcc
+p2 <- colorRampPalette(c("red","yellow"))
+p2(2)
+p2(10)
+showMe(p1(20))
+showMe(p2(20))
+showMe(p2(2))
+p1
+?fun(rgb)
+?fun
+?rgb
+4
+p3 <- colorRampPalette(c("blue","green"),alpha=.5)
+p3(5)
+plot(x, y, pch=19, col=rgb(0,.5,.5,.3))
+cols <- brewer.pal(3, "BuGn")
+showMe(cols)
+pal <- colorRampPalette(cols)
+showMe(pal(20))
+image(volcano, col = p1(20))
+1
+4
+1
+2
+2
+1
+2
+1
+3
+3
+swirl()
+tim
+3
+1
+# Finished 7 colors, now starting 8 - GGplot2
+0
+0
+library(swirl)
+swirl()
+Tim
+3
+1
+8
+4
+1
+2
+1
+2
+str(mpg)
+qplot(displ, hwy, data=mpg, color=drv, geom=c("point","smooth"))
+qplot(y=hwy, data=mpg, color=drv)
+summary(myhigh)
+myhigh
+qplot(drv,hwy,data=mpg,geom="boxplot",color=manufacturer)
+qplot(hwy,data=mpg,fill=drv)
+qplot(displ,hwy,data=mpg,facets=.~drv)
+qplot(hwy,data=mpg,facets=drv~., binwidth=2)
+# End ggplot part 1 (8), starting ggplot part 2 (9)

@@ -142,5 +142,3 @@ legend( "topright", levels(RTRyears), fill=colfill )
 # lower end of the RTR range and most of 2016 on the high end
 # 2015 is mostly a bit higher than 2014, with a single instance 
 # on the high end.
-
-# next file, we'll look at the info using scatter plots

@@ -35,3 +35,5 @@ xyplot(UOF_only~SOF_only|factor(years), data=df, type=c("p", "r"),
 # making years a factor allows it to show up in the labels
 # type gave us both points (p) and a regression line (r)
 
+# if we had another criteria - besides years - we could add it
+# like this factor(years)*criteria
