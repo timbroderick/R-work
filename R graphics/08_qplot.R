@@ -75,12 +75,13 @@ qplot(UOF_only,Total_RTR_incidents,
 
 # facet grid compares SOF and UOF
 # But divides space by year
-# and by number of Total RTR incidents (facets)
-qplot(UOF_only,SOF_only,
+qplot(SOF_only,UOF_only,
       data=df, 
       color=factor(years),
-      facets = Total_RTR_incidents~factor(years),
-      xlab="UOF", ylab="SOF")
+      xlab="SOF", ylab="UOF") + facet_grid(. ~ factor(years))
+# for facet_grid, you can replace the . ~ with another
+# factor and it will do both, like
+# Total_RTR_incidents ~ factor(years)
 
 # here's the box plot
 qplot(factor(years), SOF_only, 
