@@ -43,8 +43,8 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 
 #----Set up plot for print and online --------
 dev.cur()
-#pdf(file="ggplotBars.pdf", width = 6, height = 4.5) 
-png(filename = "ggplotBars.png",width = 600, height = 500, units = "px")
+pdf(file="ggplotBars.pdf", width = 7, height = 6) 
+#png(filename = "ggplotBars.png",width = 600, height = 500, units = "px")
 #-----Insert plot here -------------
 
 # stacked bars
@@ -67,11 +67,11 @@ stacked <- stacked +
 
 # add titles
 stacked <- stacked + labs(
-  title="RTR by year, quarter",
-  subtitle="subtitle here",
-  x="Years, quarters", 
-  y="Types of response-to-resistance",
-  caption="caption here")
+  title="Response to resistance",
+  subtitle="By year and quarter.\nElgin police have increased their use of non-lethal\nforce in response to resistance.",
+  x="YEAR, QUARTER", 
+  y="TYPES OF RESPONSE TO RESISTANCE",
+  caption="Source: Elgin police")
 
 # add bar labels
 stacked <- stacked + geom_text(
@@ -80,10 +80,26 @@ stacked <- stacked + geom_text(
   aes(x = Year_Quarter, 
       y = value - (value * 0.025), 
       hjust = 1,
-      label = value), 
-  size = 3.5)
+      label = value),
+  size=5,
+  fontface="bold",
+  color="white"
+  )
+
+# now let's mess with some aesthetics of the plot
+stacked <- stacked + theme(
+  plot.background = element_rect(fill = "white"),
+  legend.background = element_rect(fill = "white"),
+  plot.title = element_text(size = 30),
+  plot.subtitle = element_text(size = 18),
+  legend.text=element_text(size=15),
+  axis.title=element_text(size=14, face="bold"),
+  axis.text=element_text(size=14),
+  plot.caption=element_text(size=14)
+  )
 
 stacked
 
 #----- End plot --------------
 dev.off() 
+
