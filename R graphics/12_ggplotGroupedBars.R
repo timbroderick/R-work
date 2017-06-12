@@ -29,7 +29,7 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 # and the png will be readable on mobile.
 
 # As for height, adjust that as necessary. Look at the
-# look at the files you create and see if they need room!
+# files you create and see if they need room!
 
 # While working out your plot, leave these items commented out
 # so you can see a preview of your graphic in the plots pane
