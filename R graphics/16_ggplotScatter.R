@@ -35,37 +35,51 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 # you'll have to uncomment one and comment out the other.
 
 #dev.cur()
-#pdf(file="ggplotLine.pdf", width = 7, height = 6) 
-#png(filename = "ggplotLine.png",width = 600, height = 500, units = "px")
+#pdf(file="ggplotScatter.pdf", width = 7, height = 6) 
+#png(filename = "ggplotScatter.png",width = 600, height = 500, units = "px")
 #-----Insert plot here -------------
 
-# line chart
-pLine <- ggplot(df) +
+# scatter chart
+pScat <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
-      group = force, 
       color = force) +
-  geom_line(stat="identity", 
-            size = 1.5) + 
-  geom_point(stat="identity", 
-             size = 3,
-             shape=21,
-             fill="white") + 
+  geom_point(stat="identity") + 
   theme_fivethirtyeight()
+
+# alternative dots - larger with white outline
+# note how we have to change the way we
+# specify the fill color of the dots
+pScat <- ggplot(df) +
+  aes(Year_Quarter, 
+      value, 
+      fill = force) +
+  geom_point(stat="identity",
+             shape = 21,
+             size=3,
+             color = "white") + 
+  theme_fivethirtyeight()
+
+# Note that there's another way to set the size of points
+# and that's by using another factor to do it.
+# a good example can be found here: 
+# http://t-redactyl.io/blog/2016/02/creating-plots-in-r-using-ggplot2-part-6-weighted-scatterplots.html
+# This plots ozone levels by day, but sets the size of 
+# the dots by the average wind speed for the day
 
 # Let's customize the x scale
 # Remember \n = a line break
-pLine <- pLine + scale_x_discrete(
+pScat <- pScat + scale_x_discrete(
   labels=c("1Q\n2014","2Q","3Q","4Q","1Q\n2015","2Q","3Q","4Q","1Q\n2016","2Q","3Q","4Q")
 )
 
 # Let's also customize the y scale
 # we set the min and max, then where breaks should be
-pLine <- pLine + 
+pScat <- pScat + 
   scale_y_continuous(breaks=c(seq(0,40,5)) )
 
 # add all the titles.
-pLine <- pLine + labs(
+pScat <- pScat + labs(
   title="Response to resistance", # your headline
   subtitle="Elgin police have increased their use of\nnon-lethal force in response to resistance.",
   x="YEAR, QUARTER", 
@@ -74,14 +88,14 @@ pLine <- pLine + labs(
 
 # This puts the legend horizontally across the top
 # you can leave this alone 
-pLine <- pLine + 
+pScat <- pScat + 
   theme(legend.position="top", 
         legend.direction="horizontal",
         legend.title = element_blank())
 
 # Here's where we adapt the theme we're using to work for us
 # Can ignore
-pLine <- pLine + theme(
+pScat <- pScat + theme(
   plot.background = element_rect(fill = "white"),
   legend.background = element_rect(fill = "white"),
   plot.title = element_text(size = 32),
@@ -92,7 +106,7 @@ pLine <- pLine + theme(
   plot.caption=element_text(size=14, hjust=0)
 )
 
-pLine
+pScat
 
 
 #----- End plot --------------
