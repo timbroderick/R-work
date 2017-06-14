@@ -79,24 +79,127 @@ summary(dfLook)
 
 
 library(ggplot2)
+library(ggthemes)
+
+
+# -----
+# Looking at force vs. Officer data
 
 qplot(force,Total_officer,
       data=dfLook, 
-      color=factor(years),
       xlab="UOF incidents", 
       ylab="officer injuried") + 
+  stat_smooth(method="lm") +
   facet_grid(. ~ factor(Officer_major))
+
+qplot(force,Total_officer,
+      data=dfLook, 
+      xlab="UOF incidents", 
+      ylab="officer injuried") + 
+  stat_smooth(method="lm") +
+  facet_grid(. ~ factor(years))
+
+fit_officer <- lm(force ~ Total_officer, data = dfLook)
+summary(fit_officer)
+
+officer <- ggplot(dfLook) +
+  aes(x=force, 
+      y=Total_officer
+  ) + 
+  geom_point(stat="identity", 
+             size = 3,
+             shape=21,
+             color="black",
+             aes(
+               fill=factor(years) )
+  ) +
+  geom_smooth(method=lm) +
+  theme_fivethirtyeight()
+
+# add all the titles.
+officer <- officer + 
+  labs(
+    title="Use of force and officer injuries", # your headline
+    subtitle="Subhead here",
+    x="USE OF FORCE INCIDENTS",
+    y="INJURIES TO OFFICERS",
+    caption="\nSource: Elgin police") +
+  scale_y_continuous(breaks=c(seq(0,10,2)) )
+
+officer <- officer + 
+  theme(legend.position="top", 
+        legend.direction="horizontal",
+        legend.title = element_blank())
+
+officer <- officer + theme(
+  plot.background = element_rect(fill = "white"),
+  legend.background = element_rect(fill = "white"),
+  plot.title = element_text(size = 32),
+  plot.subtitle = element_text(size = 20),
+  legend.text=element_text(size=16),
+  axis.title=element_text(size=16, face="bold"),
+  axis.text=element_text(size=14),
+  plot.caption=element_text(size=14, hjust=0)
+)
+officer
+
+# -----
+# Looking at force vs. Suspect data
 
 qplot(force,Total_suspect,
       data=dfLook, 
-      color=factor(years),
       xlab="UOF incidents", 
-      ylab="suspect injuried") + 
+      ylab="Suspect injuried") + 
+  stat_smooth(method="lm") +
   facet_grid(. ~ factor(Suspect_major))
 
-# so right now we can see that major injuries aren't
-# a defining factor. They don't happen frequently
-# and they don't usually happen when UOF incidents
-# are more frequent
+qplot(force,Total_suspect,
+      data=dfLook, 
+      xlab="UOF incidents", 
+      ylab="Suspect injuried") + 
+  stat_smooth(method="lm") +
+  facet_grid(. ~ factor(years))
 
+fit_suspect <- lm(force ~ Total_suspect, data = dfLook)
+summary(fit_suspect)
 
+suspect <- ggplot(dfLook) +
+  aes(x=force, 
+      y=Total_suspect
+  ) + 
+  geom_point(stat="identity", 
+             size = 3,
+             shape=21,
+             color="black",
+             aes(
+               fill=factor(years) )
+  ) +
+  geom_smooth(method=lm) +
+  theme_fivethirtyeight()
+
+# add all the titles.
+suspect <- suspect + 
+  labs(
+    title="Use of force and suspect injuries", # your headline
+    subtitle="Subhead here",
+    x="USE OF FORCE INCIDENTS",
+    y="INJURIES TO SUSPECTS",
+    caption="\nSource: Elgin police") +
+  scale_y_continuous(breaks=c(seq(0,18,2)) )
+
+suspect <- suspect + 
+  theme(legend.position="top", 
+        legend.direction="horizontal",
+        legend.title = element_blank())
+
+suspect <- suspect + theme(
+  plot.background = element_rect(fill = "white"),
+  legend.background = element_rect(fill = "white"),
+  plot.title = element_text(size = 32),
+  plot.subtitle = element_text(size = 20),
+  legend.text=element_text(size=16),
+  axis.title=element_text(size=16, face="bold"),
+  axis.text=element_text(size=14),
+  plot.caption=element_text(size=14, hjust=0)
+)
+suspect
