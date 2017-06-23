@@ -4,7 +4,7 @@
 #I'm sure you will enjoy this section of the R Programming course.
 #
 #Instructions for this dataset:
-# Simply select ALL the lines in this script by pressing
+# Simply select ALL the lines in this script by pressing 
 # CTRL+A on Windows or CMND+A on a Mac and execute them
 # Once you have executed the commands the following objects
 # will be created:
@@ -22,13 +22,16 @@
 #Sincerely,
 #Kirill Eremenko
 #www.superdatascience.com
+
 #Copyright: These datasets were prepared using publicly available data.
-#           However, theses scripts are subject to Copyright Laws.
+#           However, theses scripts are subject to Copyright Laws. 
 #           If you wish to use these R scripts outside of the R Programming Course
 #           by Kirill Eremenko, you may do so by referencing www.superdatascience.com in your work.
+
 #Comments:
 #Seasons are labeled based on the first year in the season
 #E.g. the 2012-2013 season is preseneted as simply 2012
+
 #Notes and Corrections to the data:
 #Kevin Durant: 2006 - College Data Used
 #Kevin Durant: 2005 - Proxied With 2006 Data
@@ -36,10 +39,13 @@
 #Derrick Rose: 2007 - College Data Used
 #Derrick Rose: 2006 - Proxied With 2007 Data
 #Derrick Rose: 2005 - Proxied With 2007 Data
+
 #Seasons
 Seasons <- c("2005","2006","2007","2008","2009","2010","2011","2012","2013","2014")
+
 #Players
 Players <- c("KobeBryant","JoeJohnson","LeBronJames","CarmeloAnthony","DwightHoward","ChrisBosh","ChrisPaul","KevinDurant","DerrickRose","DwayneWade")
+
 #Salaries
 KobeBryant_Salary <- c(15946875,17718750,19490625,21262500,23034375,24806250,25244493,27849149,30453805,23500000)
 JoeJohnson_Salary <- c(12000000,12744189,13488377,14232567,14976754,16324500,18038573,19752645,21466718,23180790)
@@ -56,7 +62,8 @@ Salary <- rbind(KobeBryant_Salary, JoeJohnson_Salary, LeBronJames_Salary, Carmel
 rm(KobeBryant_Salary, JoeJohnson_Salary, CarmeloAnthony_Salary, DwightHoward_Salary, ChrisBosh_Salary, LeBronJames_Salary, ChrisPaul_Salary, DerrickRose_Salary, DwayneWade_Salary, KevinDurant_Salary)
 colnames(Salary) <- Seasons
 rownames(Salary) <- Players
-#Games
+
+#Games 
 KobeBryant_G <- c(80,77,82,82,73,82,58,78,6,35)
 JoeJohnson_G <- c(82,57,82,79,76,72,60,72,79,80)
 LeBronJames_G <- c(79,78,75,81,76,79,62,76,77,69)
@@ -72,6 +79,7 @@ Games <- rbind(KobeBryant_G, JoeJohnson_G, LeBronJames_G, CarmeloAnthony_G, Dwig
 rm(KobeBryant_G, JoeJohnson_G, CarmeloAnthony_G, DwightHoward_G, ChrisBosh_G, LeBronJames_G, ChrisPaul_G, DerrickRose_G, DwayneWade_G, KevinDurant_G)
 colnames(Games) <- Seasons
 rownames(Games) <- Players
+
 #Minutes Played
 KobeBryant_MP <- c(3277,3140,3192,2960,2835,2779,2232,3013,177,1207)
 JoeJohnson_MP <- c(3340,2359,3343,3124,2886,2554,2127,2642,2575,2791)
@@ -88,6 +96,7 @@ MinutesPlayed <- rbind(KobeBryant_MP, JoeJohnson_MP, LeBronJames_MP, CarmeloAnth
 rm(KobeBryant_MP, JoeJohnson_MP, CarmeloAnthony_MP, DwightHoward_MP, ChrisBosh_MP, LeBronJames_MP, ChrisPaul_MP, DerrickRose_MP, DwayneWade_MP, KevinDurant_MP)
 colnames(MinutesPlayed) <- Seasons
 rownames(MinutesPlayed) <- Players
+
 #Field Goals
 KobeBryant_FG <- c(978,813,775,800,716,740,574,738,31,266)
 JoeJohnson_FG <- c(632,536,647,620,635,514,423,445,462,446)
@@ -104,6 +113,7 @@ FieldGoals <- rbind(KobeBryant_FG, JoeJohnson_FG, LeBronJames_FG, CarmeloAnthony
 rm(KobeBryant_FG, JoeJohnson_FG, LeBronJames_FG, CarmeloAnthony_FG, DwightHoward_FG, ChrisBosh_FG, ChrisPaul_FG, KevinDurant_FG, DerrickRose_FG, DwayneWade_FG)
 colnames(FieldGoals) <- Seasons
 rownames(FieldGoals) <- Players
+
 #Field Goal Attempts
 KobeBryant_FGA <- c(2173,1757,1690,1712,1569,1639,1336,1595,73,713)
 JoeJohnson_FGA <- c(1395,1139,1497,1420,1386,1161,931,1052,1018,1025)
@@ -120,6 +130,7 @@ FieldGoalAttempts <- rbind(KobeBryant_FGA, JoeJohnson_FGA, LeBronJames_FGA, Carm
 rm(KobeBryant_FGA, JoeJohnson_FGA, LeBronJames_FGA, CarmeloAnthony_FGA, DwightHoward_FGA, ChrisBosh_FGA, ChrisPaul_FGA, KevinDurant_FGA, DerrickRose_FGA, DwayneWade_FGA)
 colnames(FieldGoalAttempts) <- Seasons
 rownames(FieldGoalAttempts) <- Players
+
 #Points
 KobeBryant_PTS <- c(2832,2430,2323,2201,1970,2078,1616,2133,83,782)
 JoeJohnson_PTS <- c(1653,1426,1779,1688,1619,1312,1129,1170,1245,1154)
@@ -136,9 +147,3 @@ Points <- rbind(KobeBryant_PTS, JoeJohnson_PTS, LeBronJames_PTS, CarmeloAnthony_
 rm(KobeBryant_PTS, JoeJohnson_PTS, LeBronJames_PTS, CarmeloAnthony_PTS, DwightHoward_PTS, ChrisBosh_PTS, ChrisPaul_PTS, KevinDurant_PTS, DerrickRose_PTS, DwayneWade_PTS)
 colnames(Points) <- Seasons
 rownames(Points) <- Players
-Salary
-library("readr", lib.loc="/Library/Frameworks/R.framework/Versions/3.2/Resources/library")
-setwd("~/Desktop/R-work/R coursework/udemy")
-df <- read_csv("section 5/DemographicData.csv")
-head(df)
-df$`Birth rate`[df$`Country Name`=="Angola"]
