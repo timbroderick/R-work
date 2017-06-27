@@ -4,7 +4,7 @@ Currently going through the basic Swirl course while viewing "R programming A-Z"
 FWIW, they seem to compliment each other quite well.
 
 
-#### Installing R
+### Installing R
 
 To get R, go to 
 https://www.r-project.org/ 
@@ -15,7 +15,7 @@ You can run R without R-studio. But R-studio is a friendlier interface for R, an
 
 Be sure to install the versions compatible with your operating system, especially version number.
 
-#### Learning R
+### Learning R
 
 Swirl is a set of interactive - free - tutorials that will take you through the basics of learning R and R-studio.  http://swirlstats.com/  To install it, type: `install.packages("swirl")` in the R console. It'll download and install it for you. 
 
@@ -25,7 +25,7 @@ I'm also going through this Udemy class: https://www.udemy.com/r-programming/ I 
 
 If you've never done a Udemy class, the first time you go to their website and look at a specific class, it'll offer that class to you for a drastically reduced price. This r-programming class was only $10. 
 
-#### Other resources
+### Other resources
 
 Here's a number of links to blog posts or code examples, with an emphasis on data viz:
 
@@ -58,5 +58,9 @@ https://github.com/dhmontgomery/personal-work
 Looks like the Financial Times is going to start sharing R tutorials:
 https://github.com/ft-interactive/R-tutorials
 The first one up is on joining data to shapefiles. FYI, shapefiles are one of the ways mapping information is stored. So, for instance, we have shapefiles for all the counties in Illinois that can be used to show average income by county or median age. 
+
+This is amazing: Washington Post shared all the data and R scripts they used to break this major story: "Jared Kushner and his partners used a program meant for job-starved areas to build a luxury skyscraper "
+https://github.com/wpinvestigative/kushner_eb5_census
+
 
 
