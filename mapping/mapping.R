@@ -47,3 +47,8 @@ lnd@data[lnd$Partic_Per < 15,]
 
 lnd@data[1:2,1:3] # first two rows, first three columns
 
+# Select zones where sports participation is between 20 and 25%
+sel <- lnd$Partic_Per > 20 & lnd$Partic_Per < 25
+plot(lnd[sel, ]) # Only shows some areas
+head(sel) # test output of previous selection 
+
