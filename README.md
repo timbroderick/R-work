@@ -42,11 +42,23 @@ https://cran.r-project.org/web/packages/fivethirtyeight/vignettes/fivethirtyeigh
 And here's the R scripts and datasets they examined
 https://github.com/rudeboybert/fivethirtyeight/tree/master/data-raw
 
+Here's the book on data science and R, with one of the authors being the person who created the visualization library ggplo2
+http://r4ds.had.co.nz/
+
 Here's a free book on advanced R:
 http://adv-r.had.co.nz/
 
 I found these tutorials invaluable for developing our R scripts for graphics
 http://t-redactyl.io/tag/r-graphing-tutorials.html
+
+Looks like the Financial Times is going to start sharing R tutorials:
+https://github.com/ft-interactive/R-tutorials
+The first one up is on joining data to shapefiles. FYI, shapefiles are one of the ways mapping information is stored. So, for instance, we have shapefiles for all the counties in Illinois that can be used to show average income by county or median age. 
+
+Speaking of maps, here's an extensive online tutorial to get started with mapping and R: https://github.com/Robinlovelace/Creating-maps-in-R/blob/master/README.md
+Looks like a number of libraries need to be installed.
+
+Not sure how good this is, but might be another way to learn mapping in R: http://www.computerworld.com/article/3038270/data-analytics/create-maps-in-r-in-10-fairly-easy-steps.html
 
 This is a weekend project - take some time on a weekend and just go through this as an exercise: Andrew Ba Tran examines police stun gun use in Connecticut. He works the data, and examines it visually with charts and maps all generated in R. This was for a NICAR session. https://trendct.github.io/data/2016/06/stun-guns/
 
@@ -54,10 +66,6 @@ David Montgomery of the Pioneer Press shared this analysis of police data, from 
 
 He's constantly doing little things to develop his skills - just like an athlete will work out every day. Here's where he has that, some of it fun:
 https://github.com/dhmontgomery/personal-work
-
-Looks like the Financial Times is going to start sharing R tutorials:
-https://github.com/ft-interactive/R-tutorials
-The first one up is on joining data to shapefiles. FYI, shapefiles are one of the ways mapping information is stored. So, for instance, we have shapefiles for all the counties in Illinois that can be used to show average income by county or median age. 
 
 This is amazing: Washington Post shared all the data and R scripts they used to break this major story: "Jared Kushner and his partners used a program meant for job-starved areas to build a luxury skyscraper "
 https://github.com/wpinvestigative/kushner_eb5_census
