@@ -60,6 +60,8 @@ Looks like a number of libraries need to be installed.
 
 Not sure how good this is, but might be another way to learn mapping in R: http://www.computerworld.com/article/3038270/data-analytics/create-maps-in-r-in-10-fairly-easy-steps.html
 
+Another step by step here: https://reubenfb.github.io/mapping_in_r/presentation.html#/
+
 This is a weekend project - take some time on a weekend and just go through this as an exercise: Andrew Ba Tran examines police stun gun use in Connecticut. He works the data, and examines it visually with charts and maps all generated in R. This was for a NICAR session. https://trendct.github.io/data/2016/06/stun-guns/
 
 David Montgomery of the Pioneer Press shared this analysis of police data, from working the data to visualizing it: https://github.com/pioneerpress/code/tree/master/st-anthony-police
