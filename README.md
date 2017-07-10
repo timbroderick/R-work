@@ -27,7 +27,10 @@ If you've never done a Udemy class, the first time you go to their website and l
 
 ### Other resources - graphics
 
-The point with these is to produce various chart types suitable for print or online - and for online, specifically viewable on mobile devices.
+Find annotated scripts in folder R Graphics that start with basic plotting in R and progress through to plots using ggplot2. The point with these is to produce various chart types suitable for print or online - and for online, specifically viewable on mobile devices.
+
+I found these tutorials invaluable for developing our R scripts for graphics
+http://t-redactyl.io/tag/r-graphing-tutorials.html
 
 This is an excellent introduction to R for reporters. 
 https://paldhous.github.io/NICAR/2017/r-analysis.html
@@ -45,9 +48,6 @@ http://r4ds.had.co.nz/
 Here's a free book on advanced R:
 http://adv-r.had.co.nz/
 
-I found these tutorials invaluable for developing our R scripts for graphics
-http://t-redactyl.io/tag/r-graphing-tutorials.html
-
 David Montgomery of the Pioneer Press shared this analysis of police data, from working the data to visualizing it: https://github.com/pioneerpress/code/tree/master/st-anthony-police
 
 He's constantly doing little things to develop his skills - just like an athlete will work out every day. Here's where he has that, some of it fun:
@@ -56,7 +56,7 @@ https://github.com/dhmontgomery/personal-work
 
 ### Other resources - mapping
 
-There's a way bigger challenge doing maps in R, especially if you don't have experience in GIS at all. The focus on here is to create exloratory chloropleth maps with your choice of color palattes. To also have these able to be exported for print or online would be gravy.
+There's a way bigger challenge doing maps in R, especially if you don't have experience in GIS at all. My annotated scripts on this are in folder mapping. The focus on here is to create exloratory chloropleth maps with your choice of color palattes. To also have these able to be exported for print or online would be gravy.
 
 Here's an extensive online tutorial to get started with mapping and R: https://github.com/Robinlovelace/Creating-maps-in-R/blob/master/README.md
 It had some rough parts, but I worked through it and my annotations may help:  https://github.com/dailyherald/R-work/blob/master/mapping/mapping.R
