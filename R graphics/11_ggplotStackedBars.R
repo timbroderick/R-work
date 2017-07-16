@@ -12,7 +12,7 @@ library(ggthemes)
 # to make them more readable.
 # Note that here you can decide the order in which
 # the bars are stacked.
-df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only"),
+df$set <- factor(df$set, levels = c("Transitions","SOF_only","UOF_only"),
                    labels = c("Transitions","Show of force","Use of force" ))
 
 
@@ -41,9 +41,9 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 
 # stacked bars
 stacked <- ggplot(df) + # ggplot(dataframe name)
-  aes(x =Year_Quarter, # column for the x axis
+  aes(x = reorder(Year_Quarter, -sort), # column for the x axis
       y = value, # Column with values that get plotted
-      fill = force, # Column with values that decide color
+      fill = set, # Column with values that decide color
       label = value) + # have the values appear on the bars
   geom_bar(stat = "identity") + # leave these last lines alone
   coord_flip() + theme_fivethirtyeight()

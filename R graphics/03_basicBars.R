@@ -24,7 +24,7 @@ par(pin=c(4,2.75)) # size of plot in inches
 
 # for cex, 1 = 100%
 # first a simple bar chart for all RTR incidents
-barplot(df$Total_RTR_incidents, horiz=TRUE, 
+barplot(df$Total_RTR, horiz=TRUE, 
         names.arg = df$Year_Quarter, cex.names=0.8,
         main="RTR incidents by year, quarter",
         xlab = "Number of incidents",
@@ -48,7 +48,8 @@ barplot(df$Total_RTR_incidents, horiz=TRUE,
 # and then transpose it
 
 # Load the data into the matrix
-counts2 <- matrix(c(df$SOF_only,df$UOF_only,df$Total_transitions),ncol=3)
+counts2 <- matrix(c(df$SOF_only,df$UOF_only,df$Transitions),ncol=3)
+counts2
 # name the columns
 colnames(counts2)=c("SOF_only","UOF_only","Transitions")
 # name the rows by the year/quarter
@@ -85,28 +86,3 @@ barplot(counts, horiz=TRUE, cex.names=0.8,
 # which is better - stacked or grouped? 
 # depends on your data and what you want to show
 # but now it's easy to try them both
-#---------
-
-# one last thought - these charts are basically publication 
-# ready. Online and in print. And they're done with three
-# or four lines of code. 
-# As we move forward and start working with ggplot2
-# they'll be even better.
-
-#----Set up plot for print and online --------
-dev.cur()
-# note that we had to make the width wider than 4
-# to accomodate the y labels
-pdf(file="myplotStackedBars.pdf", width = 6, height = 4) 
-#png(filename = "myplotStackedBars.png",width = 600, height = 400, units = "px")
-#-----Insert plot here -------------
-par(las=1)
-barplot(counts, horiz=TRUE, cex.names=0.8,
-        main="RTR incidents by year, quarter",
-        xlab = "Number of incidents",
-        col=c("darkgreen","darkblue","red"),
-        legend = rownames(counts),
-        args.legend = list(x ='bottomright', inset=0.01)
-)
-#----- End plot --------------
-dev.off() 

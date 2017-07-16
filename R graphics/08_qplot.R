@@ -23,20 +23,20 @@ library(ggthemes)
 # http://www.statmethods.net/advgraphs/ggplot2.html
 
 # let's start with a histogram
-qplot(Total_RTR_incidents,
+qplot(Total_RTR,
       data=df,
       alpha=.05, # sets transparency 
-      fill=factor(years)
+      fill=factor(year)
 )
 
 # qplot has a number of options
 
 # now a simple density plot
-qplot(Total_RTR_incidents, data=df, 
+qplot(Total_RTR, data=df, 
       geom="density",
-      color=factor(years),
-      fill=factor(years),
-      linetype = factor(years),
+      color=factor(year),
+      fill=factor(year),
+      linetype = factor(year),
       alpha=I(.5), # I() keeps alpha out of legend
       main="Distribution of RTR incidents", 
       xlab="Total RTR incidents",
@@ -48,46 +48,46 @@ qplot(Total_RTR_incidents, data=df,
 # the gray area is the 95% confidence interval
 # Generally, the closer that is to the trend line
 # the tighter the correlation
-qplot(y=Total_RTR_incidents,
+qplot(y=Total_RTR,
       data=df
       ) + geom_smooth(method = "lm")
 
 # simple scatter, with years by color
-qplot(y=Total_RTR_incidents,
+qplot(y=Total_RTR,
       data=df,
-      color=factor(years)
+      color=factor(year)
 )
 
 # simple scatter with smoothed trend line
 # requires an x value
-qplot(UOF_only,Total_RTR_incidents,
+qplot(Total_RTR,UOF_only,
       data=df,
       geom=c("point","smooth")
 )
 
 # simple scatter, lines not smoothed
 # and years as factor
-qplot(UOF_only,Total_RTR_incidents,
+qplot(Total_RTR,UOF_only,
       data=df,
-      color=factor(years)
+      color=factor(year)
 ) + geom_smooth(method = "lm")#, se = FALSE) 
 # se would hide 95% conf
 
-# facet grid compares SOF and UOF
+# facet grid compares total RTR and UOF
 # But divides space by year
-qplot(SOF_only,UOF_only,
+qplot(Total_RTR,UOF_only,
       data=df, 
-      color=factor(years),
-      xlab="SOF", ylab="UOF") + facet_grid(. ~ factor(years))
+      color=factor(year),
+      xlab="Total RTR", ylab="UOF") + facet_grid(. ~ factor(year))
 # for facet_grid, you can replace the . ~ with another
 # factor and it will do both, like
-# Total_RTR_incidents ~ factor(years)
+# Total_RTR ~ factor(year)
 
 # here's the box plot
-qplot(factor(years), SOF_only, 
+qplot(factor(year), SOF_only, 
       data=df, 
       geom=c("boxplot", "jitter"),
-      fill=factor(years), 
+      fill=factor(year), 
       alpha=I(.5),
       main="SOF by Year",
       xlab="Year", ylab="SOF")
@@ -96,7 +96,7 @@ qplot(factor(years), SOF_only,
 qplot(factor(Year_Quarter), SOF_only, 
       data=df, 
       geom=c("dotplot"),
-      fill=factor(years), 
+      fill=factor(year), 
       stackdir = "center", binaxis = "y",
       main="SOF by Year, quarter",
       xlab="Year", ylab="SOF")  + coord_flip()

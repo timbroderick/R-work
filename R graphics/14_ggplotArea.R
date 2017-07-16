@@ -12,7 +12,7 @@ library(ggthemes)
 
 # First, let's change the levels of force
 # to make them more readable.
-df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only"),
+df$set <- factor(df$set, levels = c("Transitions","SOF_only","UOF_only"),
                    labels = c("Transitions","Show of force","Use of force" ))
 
 
@@ -43,8 +43,8 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 pArea <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
-      group = force, 
-      fill = force) +
+      group = set, 
+      fill = set) +
   geom_area(stat="identity") + 
   theme_fivethirtyeight()
 

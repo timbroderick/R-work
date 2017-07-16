@@ -12,7 +12,7 @@ library(ggthemes)
 
 # First, let's change the levels of force
 # to make them more readable.
-df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only"),
+df$set <- factor(df$set, levels = c("Transitions","SOF_only","UOF_only"),
                    labels = c("Transitions","Show of force","Use of force" ))
 
 
@@ -43,8 +43,8 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 pLine <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
-      group = force, 
-      color = force) +
+      group = set, 
+      color = set) +
   geom_line(stat="identity", 
             size = 1.5) + 
   geom_point(stat="identity", 

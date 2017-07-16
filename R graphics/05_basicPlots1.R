@@ -1,12 +1,12 @@
 # Continuing to work with the RTR data
 library(readr)
-elgCrime <- read_csv("ElginUOF.csv")
+df <- read_csv("dfCrime.csv")
 
 # let's get the column names again
-summary(elgCrime)
+summary(df)
 
 # Now lets see this as a scatter plot
-with(elgCrime, plot(Total_RTR_incidents, UOF_only)) # scatter plot
+with(df, plot(Total_RTR, UOF_only)) # scatter plot
 title(main = "UOF vs Total RTR incidents") # adds title
 # What you're seeing here
 # The first line of code, starting "with", creates a scatter plot. 
@@ -17,13 +17,13 @@ title(main = "UOF vs Total RTR incidents") # adds title
 # Title obviously adds a title
 
 # We can add some other things to help us understand the data too
-abline(h=median(elgCrime$UOF_only), lty=2, lwd=2) 
+abline(h=median(df$UOF_only), lty=2, lwd=2) 
 # adds horizontal line for median UOF incidents which looks to be about 19
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
+abline(v=median(df$Total_RTR), lwd=2, col="red") 
 # adds vertical red line for median RTR incidents, about 36
 
 
-fit <- lm(elgCrime$UOF_only~elgCrime$Total_RTR_incidents)
+fit <- lm(df$UOF_only~df$Total_RTR)
 summary(fit)
 # Lots to uppack here. Honestly, I am not qualified to
 # explain in detail these more advanced statistic measures. 
@@ -74,25 +74,25 @@ abline(fit)
 par(mfrow=c(3,1),mar=c(4,4,2,1)) 
 
 # Let's add the plot we already did
-with(elgCrime, plot(Total_RTR_incidents, UOF_only)) # scatter plot
+with(df, plot(Total_RTR, UOF_only)) # scatter plot
 title(main = "UOF vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$UOF_only), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$UOF_only~elgCrime$Total_RTR_incidents))
+abline(h=median(df$UOF_only), lty=2, lwd=2) 
+abline(v=median(df$Total_RTR), lwd=2, col="red") 
+abline(lm(df$UOF_only~df$Total_RTR))
 
 # now SOF 
-with(elgCrime, plot(Total_RTR_incidents, SOF_only)) # scatter plot
+with(df, plot(Total_RTR, SOF_only)) # scatter plot
 title(main = "SOF vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$SOF_only), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$SOF_only~elgCrime$Total_RTR_incidents))
+abline(h=median(df$SOF_only), lty=2, lwd=2) 
+abline(v=median(df$Total_RTR), lwd=2, col="red") 
+abline(lm(df$SOF_only~df$Total_RTR))
 
 # finally, transitions
-with(elgCrime, plot(Total_RTR_incidents, Total_transitions)) # scatter plot
+with(df, plot(Total_RTR, Transitions)) # scatter plot
 title(main = "Transitions vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$Total_transitions), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$Total_transitions~elgCrime$Total_RTR_incidents))
+abline(h=median(df$Transitions), lty=2, lwd=2) 
+abline(v=median(df$Total_RTR), lwd=2, col="red") 
+abline(lm(df$Transitions~df$Total_RTR))
 
 # You may need to make your plot window larger to see the results
 # again, not enough data for any insights but it does appear
@@ -100,39 +100,5 @@ abline(lm(elgCrime$Total_transitions~elgCrime$Total_RTR_incidents))
 # there are not only more UOF incidents per quarter but
 # there are more quarters with higher-than-average UOF incidents
 # than SOF or transitions.
-
-# Now let's save this as a PDF
-# dev.cur() starts the process
-dev.cur() 
-# creates an empty pdf with w/h in inches
-pdf(file="myplot.pdf", width = 4, height = 6) 
-
-# make the space
-par(mfrow=c(3,1),mar=c(4,4,2,1)) 
-
-# adds the plots
-with(elgCrime, plot(Total_RTR_incidents, UOF_only)) # scatter plot
-title(main = "UOF vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$UOF_only), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$UOF_only~elgCrime$Total_RTR_incidents))
-
-with(elgCrime, plot(Total_RTR_incidents, SOF_only)) # scatter plot
-title(main = "SOF vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$SOF_only), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$SOF_only~elgCrime$Total_RTR_incidents))
-
-with(elgCrime, plot(Total_RTR_incidents, Total_transitions)) # scatter plot
-title(main = "Transitions vs Total RTR incidents") # adds title
-abline(h=median(elgCrime$Total_transitions), lty=2, lwd=2) 
-abline(v=median(elgCrime$Total_RTR_incidents), lwd=2, col="red") 
-abline(lm(elgCrime$Total_transitions~elgCrime$Total_RTR_incidents))
-
-
-dev.off() # Then turn off dev and you can view the plot
-
-
-# --------------
 
 # there's a better way of doing multiple plots that we'll look at later

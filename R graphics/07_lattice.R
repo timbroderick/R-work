@@ -26,11 +26,13 @@ library(lattice)
 # Each of the variables in the formula has to be a column in 
 # the data frame that you specify in the data argument.
 
-xyplot(UOF_only~SOF_only|factor(years), data=df, type=c("p", "r"),
-       main="UOF v SOF by year",
-       ylab="UOF", xlab="SOF")
+xyplot(UOF_only~Total_RTR|factor(year), 
+       data=df, 
+       type=c("p", "r"),
+       main="UOF v Total RTR by year",
+       ylab="UOF", xlab="Total RTR")
 
-# in our case, we compared UOF of force versus SOF 
+# in our case, we compared UOF of force versus Total RTR incidents 
 # by year, and so got three boxes - 2014, 2015, 2016
 # making years a factor allows it to show up in the labels
 # type gave us both points (p) and a regression line (r)

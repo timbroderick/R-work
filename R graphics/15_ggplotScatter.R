@@ -12,7 +12,7 @@ library(ggthemes)
 
 # First, let's change the levels of force
 # to make them more readable.
-df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only"),
+df$set <- factor(df$set, levels = c("Transitions","SOF_only","UOF_only"),
                    labels = c("Transitions","Show of force","Use of force" ))
 
 
@@ -43,7 +43,7 @@ df$force <- factor(df$force, levels = c("Total_transitions","SOF_only","UOF_only
 pScat <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
-      color = force) +
+      color = set) +
   geom_point(stat="identity") + 
   theme_fivethirtyeight()
 
@@ -53,7 +53,7 @@ pScat <- ggplot(df) +
 pScat <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
-      fill = force) +
+      fill = set) +
   geom_point(stat="identity",
              shape = 21,
              size=3,

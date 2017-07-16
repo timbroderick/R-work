@@ -1,9 +1,9 @@
 # Let's load our new dataframe
 
 library(readr)
-df <- read_csv("dfRTR.csv")
+df <- read_csv("dfrtr.csv")
 
-names(df)
+summary(df)
 # load in ggplot and themes
 library(ggplot2)
 library(ggthemes)
@@ -33,10 +33,10 @@ library(ggthemes)
 #-----Insert plot here -------------
 
 basebar <- ggplot(df) + 
-  aes(x = Year_Quarter, 
-      y = Total_RTR_incidents, 
-      fill = factor(years),
-      label = Total_RTR_incidents) + # have the values appear on the bars
+  aes(x = reorder(Year_Quarter, -sort), 
+      y = Total_RTR, 
+      fill = factor(year),
+      label = Total_RTR) + # have the values appear on the bars
   geom_bar(stat="identity") + 
   coord_flip() + theme_fivethirtyeight()
 
@@ -58,9 +58,9 @@ basebar <- basebar + theme(legend.position="None")
 basebar <- basebar + geom_text(
   position = "stack", 
   aes(x = Year_Quarter, 
-      y = Total_RTR_incidents - (Total_RTR_incidents * 0.025), 
+      y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
-      label = Total_RTR_incidents),
+      label = Total_RTR),
   size=5,
   fontface="bold",
   color="white"

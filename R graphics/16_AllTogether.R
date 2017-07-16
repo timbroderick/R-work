@@ -17,20 +17,24 @@ summary(df)
 # what you have
 
 # Right off the bat, I can see I need to create a column that
-# only has years. I don't know if I'm going to use it or not, 
+# only has years and a sort order. I don't know if I'm going to use it or not, 
 # but I want it.
 
 # first I sort the data by the Year_Quarter
-df[order(df$Year_Quarter),]
-df
 
-# let's create a vector of only the years and load it into a matrix
-elgYears <- c(2014,2014,2014,2014,2015,2015,2015,2015,2016,2016,2016,2016)
-years <- matrix(elgYears,12,1)
-years
+df <-df[order(df$Year_Quarter),]
+head(df)
+# add column containing the row number. We can use this to sort later
+df$sort <- seq.int(nrow(df)) 
+head(df)
 
-# Now let's bind the years matrix with our df so we have a column of just years
-df <- cbind(years,df)
+# Grab just the year and put in year column as number
+df$year <- as.numeric(as.character( substr(df$Year_Quarter, start=1, stop=4) ))
+# Grab just the quarter and put in quarter column
+df$quarter <- substr(df$Year_Quarter, start=6, stop=7)
+
+# check the columns
+names(df)
 
 # look at df and you can see that we've got a column of years now
 
@@ -58,7 +62,7 @@ df$force <- df$UOF_only + df$Total_transitions
 
 # now let's create our dataset
 names(df)
-dfLook <- subset(df, select = c("years","Year_Quarter","force","Total_officer","Total_suspect"))
+dfLook <- subset(df, select = c("year","Year_Quarter","force","Total_officer","Total_suspect","sort"))
 dfLook
 
 # cool, but I've thought of another thing. Total injuries
@@ -113,7 +117,7 @@ qplot(force,Total_officer,
       xlab="UOF incidents", 
       ylab="officer injuried") + 
   stat_smooth(method="lm") +
-  facet_grid(. ~ factor(years))
+  facet_grid(. ~ factor(year))
 # here we use years as the factor to split the data
 # into three charts. In this case, we can see
 # that as time went on there were more incidents but
@@ -133,7 +137,7 @@ qplot(force,Total_officer,
       xlab="UOF incidents", 
       ylab="officer injuried") + 
   stat_smooth(method="lm") +
-  facet_grid(factor(Officer_major) ~ factor(years))
+  facet_grid(factor(Officer_major) ~ factor(year))
 
 # the more factors you add, the more complicated the chart
 # In this case we divided the data by years
@@ -203,7 +207,7 @@ officer <- ggplot(dfLook) +
              shape=21,
              color="black",
              aes(
-               fill=factor(years) ) # different colors for years
+               fill=factor(year) ) # different colors for years
   ) +
   geom_smooth(method=lm) +
   theme_fivethirtyeight()

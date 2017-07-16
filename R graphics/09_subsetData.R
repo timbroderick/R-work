@@ -8,24 +8,21 @@ df <- read_csv("dfCrime.csv")
 names(df)
 summary(df)
 
-# Before we can start working with ggplot
-# we need to make the data long, not wide
-# first grab the columns we want
-dfUOF <- subset(df, select = c("years","Year_Quarter","UOF_only"))
-dfSOF <- subset(df, select = c("years","Year_Quarter","SOF_only"))
-dfTRAN <- subset(df, select = c("years","Year_Quarter","Total_transitions"))
-# add columns for label purposes
-dfUOF$force <- "UOF_only"
-dfSOF$force <- "SOF_only"
-dfTRAN$force <- "Total_transitions"
-# now rename UOF SOF etc to common name
-names(dfUOF)[names(dfUOF)=="UOF_only"] <- "value"
-names(dfSOF)[names(dfSOF)=="SOF_only"] <- "value"
-names(dfTRAN)[names(dfTRAN)=="Total_transitions"] <- "value"
+# Before we can start working with ggplot we need to make the data long, not wide
+# using the tidyr library, developed especially for this purpose
 
-# Now we can append the three data frames
-dfsub <- rbind(dfUOF,dfSOF,dfTRAN)
+library(tidyr)
+
+dfsort <-df[order(df$Year_Quarter),]
+head(dfsort)
+# add column containing the row number. We can use this to sort later
+dfsort$sort <- seq.int(nrow(dfsort)) 
+head(dfsort)
+
+dfsub <- gather(dfsort, set, value, 7:9, factor_key=TRUE)
+
 dfsub
+
 # let's save this 
 write_csv(dfsub,"dfsubset.csv")
 
@@ -42,12 +39,8 @@ write_csv(dfsub,"dfsubset.csv")
 # You'll encounter often this as you progress 
 # so it's just a matter of getting used to it
 
-# before we go on, let's create another subset, this time
-# just with the total RTR data
+dfrtr <- subset(dfsort, select = c("year","Year_Quarter","Total_RTR","sort"))
 
-# first grab the columns we want
-dfrtr <- subset(df, select = c("years","Year_Quarter","Total_RTR_incidents"))
-# and save it 
-write_csv(dfrtr,"dfRTR.csv")
+write_csv(dfrtr,"dfrtr.csv")
 
 # Next: Bar charts
