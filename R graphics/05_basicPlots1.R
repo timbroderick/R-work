@@ -1,13 +1,14 @@
-# Continuing to work with the RTR data
+# The code in this file is described 
+# in the pdf and html files of the same name
+
 library(readr)
 df <- read_csv("dfCrime.csv")
 
-# let's get the column names again
 summary(df)
 
 # Now lets see this as a scatter plot
-with(df, plot(Total_RTR, UOF_only)) # scatter plot
-title(main = "UOF vs Total RTR incidents") # adds title
+with(df, plot(Total_RTR, UOF_only))
+title(main = "UOF vs Total RTR incidents")
 # What you're seeing here
 # The first line of code, starting "with", creates a scatter plot. 
 # First we say what dataset we want (elgCrime), then
