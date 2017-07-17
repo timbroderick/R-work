@@ -62,7 +62,7 @@ df$force <- df$UOF_only + df$Total_transitions
 
 # now let's create our dataset
 names(df)
-dfLook <- subset(df, select = c("year","Year_Quarter","force","Total_officer","Total_suspect","sort"))
+dfLook <- subset(df, select = c("year","Year_Quarter","force","Total_officer","Total_suspect"))
 dfLook
 
 # cool, but I've thought of another thing. Total injuries
@@ -86,6 +86,29 @@ summary(dfLook)
 library(ggplot2)
 library(ggthemes)
 
+#---------------------
+# This function set styles for the chart
+# Be sure to run it before you plot
+
+theme_gfx <- function(...) {
+  theme_fivethirtyeight() +
+    theme(
+      plot.background = element_rect(fill = "white"),
+      legend.background = element_rect(fill = "white"),
+      plot.title = element_text(size = 30),
+      plot.subtitle = element_text(size = 18),
+      legend.text=element_text(size=15),
+      axis.title=element_text(size=15, face="bold"),
+      axis.text=element_text(size=13),
+      plot.caption=element_text(size=12, hjust=0),
+      # This puts the legend across the top
+      legend.position="top", 
+      legend.direction="horizontal",
+      # removes label for legend
+      legend.title = element_blank(),
+      ...
+    )
+}
 
 # -----
 # Looking at force vs. Officer data
@@ -210,7 +233,7 @@ officer <- ggplot(dfLook) +
                fill=factor(year) ) # different colors for years
   ) +
   geom_smooth(method=lm) +
-  theme_fivethirtyeight()
+  theme_gfx()
 
 # add all the titles.
 officer <- officer + 
@@ -222,21 +245,6 @@ officer <- officer +
     caption="\nSource: Elgin police") +
   scale_y_continuous(breaks=c(seq(0,10,2)) )
 
-officer <- officer + 
-  theme(legend.position="top", 
-        legend.direction="horizontal",
-        legend.title = element_blank())
-
-officer <- officer + theme(
-  plot.background = element_rect(fill = "white"),
-  legend.background = element_rect(fill = "white"),
-  plot.title = element_text(size = 32),
-  plot.subtitle = element_text(size = 20),
-  legend.text=element_text(size=16),
-  axis.title=element_text(size=16, face="bold"),
-  axis.text=element_text(size=14),
-  plot.caption=element_text(size=14, hjust=0)
-)
 officer
 
 # as we can see, there's a very slight correlation

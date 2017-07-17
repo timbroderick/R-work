@@ -17,9 +17,36 @@ library(ggplot2)
 library(ggthemes)
 
 
+#---------------------
+# This function set styles for the chart
+# Be sure to run it before you plot
+
+theme_gfx <- function(...) {
+  theme_fivethirtyeight() +
+    theme(
+      plot.background = element_rect(fill = "white"),
+      legend.background = element_rect(fill = "white"),
+      plot.title = element_text(size = 30),
+      plot.subtitle = element_text(size = 18),
+      legend.text=element_text(size=15),
+      axis.title=element_text(size=15, face="bold"),
+      axis.text=element_text(size=13),
+      plot.caption=element_text(size=12, hjust=0),
+      # This puts the legend across the top
+      legend.position="top", 
+      legend.direction="horizontal",
+      # removes label for legend
+      legend.title = element_blank(),
+      ...
+    )
+}
+
+#----Set up plot for print and online --------
+
 #dev.cur()
 #pdf(file="ggplotBox.pdf", width = 7, height = 6.75) 
 #png(filename = "ggplotBox.png",width = 600, height = 500, units = "px")
+
 #-----Insert plot here -------------
 
 # A boxplot is something that shows the range of data
@@ -40,7 +67,7 @@ boxgfx <- ggplot(df) +
       fill = factor(County)
       ) + 
   geom_boxplot() + 
-  theme_fivethirtyeight() + 
+  theme_gfx() + 
   geom_jitter() 
 # Jitter just takes all the dots and spaces them out
 # so they don't overlap and you can see them all
@@ -56,20 +83,6 @@ boxgfx <- boxgfx + labs(
 # in this case, there's no need for a legend
 boxgfx <- boxgfx + 
   theme(legend.position="None")
-
-
-# Here's where we adapt the theme we're using to work for us
-# Can ignore
-boxgfx <- boxgfx + theme(
-  plot.background = element_rect(fill = "white"),
-  legend.background = element_rect(fill = "white"),
-  plot.title = element_text(size = 32),
-  plot.subtitle = element_text(size = 20),
-  legend.text=element_text(size=16),
-  axis.title=element_text(size=16, face="bold"),
-  axis.text=element_text(size=14),
-  plot.caption=element_text(size=14, hjust=0)
-)
 
 boxgfx
 

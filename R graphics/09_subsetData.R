@@ -21,7 +21,9 @@ head(dfsort)
 
 dfsub <- gather(dfsort, set, value, 7:9, factor_key=TRUE)
 
-dfsub
+# Let's make the items in set more readable for labeling purposes
+dfsub$set <- factor(dfsub$set, levels = c("Transitions","SOF_only","UOF_only"),
+                 labels = c("Transitions","Show of force","Use of force" ))
 
 # let's save this 
 write_csv(dfsub,"dfsubset.csv")

@@ -67,7 +67,7 @@ counts
 barplot(counts, horiz=TRUE, cex.names=0.8,
         main="RTR incidents by year, quarter",
         xlab = "Number of incidents",
-        col=c("darkgreen","darkblue","red"),
+        col=c("green","blue","red"),
         legend = rownames(counts),
         args.legend = list(x ='bottomright', inset=0.01)
 )
@@ -78,7 +78,7 @@ barplot(counts, horiz=TRUE, cex.names=0.8,
         beside=TRUE,
         main="RTR incidents by year, quarter",
         xlab = "Number of incidents",
-        col=c("darkgreen","darkblue","red"),
+        col=c("green","blue","red"),
         legend = rownames(counts),
         args.legend = list(x ='bottomright', inset=0.01)
 )

@@ -8,28 +8,38 @@ summary(df)
 library(ggplot2)
 library(ggthemes)
 
+#---------------------
+# This function set styles for the chart
+# Be sure to run it before you plot
+
+
+theme_gfx <- function(...) {
+  theme_fivethirtyeight() +
+    theme(
+      plot.background = element_rect(fill = "white"),
+      legend.background = element_rect(fill = "white"),
+      plot.title = element_text(size = 30),
+      plot.subtitle = element_text(size = 18),
+      legend.text=element_text(size=15),
+      axis.title=element_text(size=15, face="bold"),
+      axis.text=element_text(size=13),
+      plot.caption=element_text(size=12, hjust=0),
+      # This puts the legend across the top
+      legend.position="top", 
+      legend.direction="horizontal",
+      # removes label for legend
+      legend.title = element_blank(),
+      ...
+    )
+}
+
 
 #----Set up plot for print and online --------
-
-# widths for pdf and png files are set up so that
-# text elements work for print and online. 
-# Generally, the pdf will = a 2-column graphic
-# that in a pinch could be used in the paper without
-# any work on my part as long as it printed in color,
-# and the png will be readable on mobile.
-
-# As for height, adjust that as necessary. Look at the
-# look at the files you create and see if they need room!
-
-# While working out your plot, leave these items commented out
-# so you can see a preview of your graphic in the plots pane
-# when you're satisfied with it, then uncomment to save out
-# files. Note you can't create pdfs and pngs at the same time
-# you'll have to uncomment one and comment out the other.
 
 #dev.cur()
 #pdf(file="ggplotBars.pdf", width = 7, height = 6.75) 
 #png(filename = "ggplotBars.png",width = 600, height = 500, units = "px")
+
 #-----Insert plot here -------------
 
 basebar <- ggplot(df) + 
@@ -38,7 +48,7 @@ basebar <- ggplot(df) +
       fill = factor(year),
       label = Total_RTR) + # have the values appear on the bars
   geom_bar(stat="identity") + 
-  coord_flip() + theme_fivethirtyeight()
+  coord_flip() + theme_gfx()
 
 # add all the titles.
 basebar <- basebar + labs(
@@ -66,22 +76,8 @@ basebar <- basebar + geom_text(
   color="white"
   )
 
-# Here's where we adapt the theme we're using to work for us
-# Can ignore
-basebar <- basebar + theme(
-  plot.background = element_rect(fill = "white"),
-  legend.background = element_rect(fill = "white"),
-  plot.title = element_text(size = 32),
-  plot.subtitle = element_text(size = 20),
-  legend.text=element_text(size=16),
-  axis.title=element_text(size=16, face="bold"),
-  axis.text=element_text(size=14),
-  plot.caption=element_text(size=14, hjust=0)
-  )
-
 basebar
 
 #----- End plot --------------
-# Uncomment the line below when saving pdfs or pngs
 #dev.off() 
 

@@ -8,57 +8,57 @@ library(ggplot2)
 library(ggthemes)
 
 
-# line chart
+#---------------------
+# This function set styles for the chart
+# Be sure to run it before you plot
 
-# First, let's change the levels of force
-# to make them more readable.
-df$set <- factor(df$set, levels = c("Transitions","SOF_only","UOF_only"),
-                   labels = c("Transitions","Show of force","Use of force" ))
-
+theme_gfx <- function(...) {
+  theme_fivethirtyeight() +
+    theme(
+      plot.background = element_rect(fill = "white"),
+      legend.background = element_rect(fill = "white"),
+      plot.title = element_text(size = 30),
+      plot.subtitle = element_text(size = 18),
+      legend.text=element_text(size=15),
+      axis.title=element_text(size=15, face="bold"),
+      axis.text=element_text(size=13),
+      plot.caption=element_text(size=12, hjust=0),
+      # This puts the legend across the top
+      legend.position="top", 
+      legend.direction="horizontal",
+      # removes label for legend
+      legend.title = element_blank(),
+      ...
+    )
+}
 
 #----Set up plot for print and online --------
-
-# widths for pdf and png files are set up so that
-# text elements work for print and online. 
-# Generally, the pdf will = a 2-column graphic
-# that in a pinch could be used in the paper without
-# any work on my part as long as it printed in color,
-# and the png will be readable on mobile.
-
-# As for height, adjust that as necessary. Look at the
-# files you create and see if they need room!
-
-# While working out your plot, leave these items commented out
-# so you can see a preview of your graphic in the plots pane
-# when you're satisfied with it, then uncomment to save out
-# files. Note you can't create pdfs and pngs at the same time
-# you'll have to uncomment one and comment out the other.
 
 #dev.cur()
 #pdf(file="ggplotScatter.pdf", width = 7, height = 6) 
 #png(filename = "ggplotScatter.png",width = 600, height = 500, units = "px")
+
 #-----Insert plot here -------------
 
-# scatter chart
 pScat <- ggplot(df) +
   aes(Year_Quarter, 
       value, 
       color = set) +
   geom_point(stat="identity") + 
-  theme_fivethirtyeight()
+  theme_gfx()
 
-# alternative dots - larger with white outline
-# note how we have to change the way we
-# specify the fill color of the dots
-pScat <- ggplot(df) +
-  aes(Year_Quarter, 
-      value, 
-      fill = set) +
-  geom_point(stat="identity",
-             shape = 21,
-             size=3,
-             color = "white") + 
-  theme_fivethirtyeight()
+# alternative dots - larger with white outline note how we have t
+# to change the way we specify the fill color of the dots
+
+#pScat <- ggplot(df) +
+#  aes(Year_Quarter, 
+#      value, 
+#      fill = set) +
+#  geom_point(stat="identity",
+#             shape = 21,
+#             size=3,
+#             color = "white") + 
+#  theme_gfx()
 
 # Note that there's another way to set the size of points
 # and that's by using another factor to do it.
@@ -86,30 +86,10 @@ pScat <- pScat + labs(
   y="NUMBER PER QUARTER",
   caption="\nNote: Show of Force and Use of Force are incidents where \npolice only warned or only used force in repsonse to resistance. \nTransition is incidents where police showed then used force. \nSource: Elgin police")
 
-# This puts the legend horizontally across the top
-# you can leave this alone 
-pScat <- pScat + 
-  theme(legend.position="top", 
-        legend.direction="horizontal",
-        legend.title = element_blank())
-
-# Here's where we adapt the theme we're using to work for us
-# Can ignore
-pScat <- pScat + theme(
-  plot.background = element_rect(fill = "white"),
-  legend.background = element_rect(fill = "white"),
-  plot.title = element_text(size = 32),
-  plot.subtitle = element_text(size = 20),
-  legend.text=element_text(size=16),
-  axis.title=element_text(size=16, face="bold"),
-  axis.text=element_text(size=14),
-  plot.caption=element_text(size=14, hjust=0)
-)
-
 pScat
 
 
 #----- End plot --------------
-# Uncomment the line below when saving pdfs or pngs
+
 #dev.off() 
 

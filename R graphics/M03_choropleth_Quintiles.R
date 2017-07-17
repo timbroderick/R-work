@@ -9,14 +9,9 @@ library(ggplot2)
 library(ggmap)
 library(ggthemes)
 
-ill_f <- read.csv("ill_f.csv", stringsAsFactors = FALSE)
-head(ill_f)
-summary(ill_f)
-names(ill_f)
-
-
-# ------------
-# define theme as a function
+#---------------------
+# This function set styles for the chart
+# Be sure to run it before you plot
 
 theme_map <- function(...) {
   theme_fivethirtyeight() +
@@ -38,6 +33,13 @@ theme_map <- function(...) {
       ...
     )
 }
+#-----------------
+# read in the data
+
+ill_f <- read.csv("ill_f.csv", stringsAsFactors = FALSE)
+head(ill_f)
+summary(ill_f)
+names(ill_f)
 
 summary(ill_f$Rchg_65over)
 # find breaks
@@ -111,7 +113,7 @@ map <- map + scale_fill_manual(
 map
 dev.off()
 
-?colorRampPalette
+?scale_fill_manual
 
 #--------------------------
 # custom legend
