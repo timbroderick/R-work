@@ -1,8 +1,8 @@
 ---
 title: "00_Introduction"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -45,13 +45,13 @@ And sometimes, it's really complicated. All these files were created using R ver
 
 These guides assume you've installed R and R Studio, and have done some of the first Swirl tutorials. 
 
-* From 01 to 07, you'll be working with R's basic plots. For exploring data yourself, these are good tools to know. However, their design isn't great for print or online. 
+* From 01 to 07, you'll be working with R's basic plots. For exploring data yourself, these are good tools to know. However, their design isn't great for print or online. And, it takes some work to get a decent graphic out of them. But these are also good exercises for understanding R, so try hard to work through them.
 
-* At 08, we start working with ggplot2, the R graphics library that takes a sophisticated approach to graphics. 08_qplot is part of ggplot - q stands for quick, and it's meant to create quick visualizations that help you understand the data.
+* At 08, we start working with ggplot2, the R graphics library that takes a sophisticated approach to graphics. 08_qplot is part of ggplot - q stands for quick, and it's meant to create quick visualizations that help you understand the data. Qplot is an excellent way of quickly looking at your data, and it's a lot easier to use than the basic plots. Along with ggplot2, qplot should replace all those basic plots.
 
 * 09 on looks at the various graphic types available through ggplot. You'll also learn to export your work for publication. 
 
-* Finally, M01 and on looks at R's ability to do maps - specifically choropleth maps. Mapping is different from anything you've done before, so work with R a bit before you tackle it.
+* Finally, M01 and on looks at R's ability to do maps - specifically choropleth maps. Mapping is different from anything you've done before, so work with R a bit before you tackle it. 
 
 ##If you want to skip the rest of this, go ahead
 
