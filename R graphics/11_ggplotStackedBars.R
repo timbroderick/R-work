@@ -72,6 +72,12 @@ stacked <- stacked + geom_text(
   color="white"
   )
 
+# Finally, let's make the axis labels better
+# Reverse order since we resorted the bars
+stacked <- stacked + scale_x_discrete(
+  labels=c("4Q","3Q","2Q","2016 1Q","4Q","3Q","2Q","2015 1Q","4Q","3Q","2Q","2014 1Q")
+)
+
 stacked
 
 #----- End plot --------------

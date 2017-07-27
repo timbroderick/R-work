@@ -73,7 +73,7 @@ ill_f$Rchg_65over_quantiles <- cut(ill_f$Rchg_65over,
 map <- ggplot(ill_f, 
               aes(long, lat, group = group, fill = Rchg_65over_quantiles)
 ) +
-  geom_polygon( color = "white", size = 0.15) + coord_map() + theme_map() +
+  geom_polygon( color = "black", size = 0.15) + coord_map() + theme_map() +
   guides(fill = guide_legend(reverse = TRUE))
 
 map <- map + labs(
