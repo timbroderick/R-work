@@ -1,8 +1,8 @@
 ---
 title: "07_qplot"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -114,6 +114,9 @@ __qplot(Total_RTR,UOF_only,data=df__ compares Total_RTR on the x axis to UOF_onl
 
 __geom_smooth(method="lm")__ computes and places the regression line. The gray shadow is the area of 95% confidence. In other words, based on the data it has R predicts that any new data would fall into that gray area 95% of the time. Given how wide the area is, that's not very impressive. The tighter that area, the more correlation there will likely be.
 
+__One more thing to note:__ Notice how the _geom\_smooth_ command was added with a __+__. That's a very common way of chaining commands together with ggplot.
+
+
 ```{r}
 
 qplot(Total_RTR,UOF_only,
@@ -209,5 +212,6 @@ By making this essentially a horizontal instead of a vertical chart, we can just
 
 But try deleting __coord_flip()__ and see what happens.
 
-Next we'll work on creating publication-ready charts, but first we'll need to work the data some.
+---------------------
+Next we'll start working with ggplot2
 
