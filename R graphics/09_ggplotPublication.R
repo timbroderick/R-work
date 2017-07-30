@@ -2,6 +2,7 @@
 # in the pdf and html files of the same name
 
 library(readr)
+library(Cairo) # on Mac need to install XQuartz from https://www.xquartz.org/
 library(ggplot2)
 library(ggthemes)
 
@@ -9,17 +10,21 @@ library(ggthemes)
 # This function set styles for the chart
 # Be sure to run it before you plot
 theme_gfx <- function(...) {
-  theme_fivethirtyeight() +
+  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
-      plot.background = element_rect(fill = "white"),
-      legend.background = element_rect(fill = "white"),
-      panel.background=element_rect(fill="#E0E0E0"),
-      strip.background=element_rect(fill="#E0E0E0"),
+      plot.background = element_blank(),
+      legend.background = element_blank(),
+      panel.background=element_rect(fill="#E5E5E5"),
+      strip.background=element_rect(fill="#E5E5E5"),
+      # modify grid and tick lines
+      panel.grid.major = element_line(size = .6, color="#D2D2D2"),
+      panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
+      axis.ticks = element_blank(),
       # edit font sizes
       plot.title = element_text(size = 30,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(size=12, face="bold"),
+      legend.title=element_text(face="bold"),
       legend.text=element_text(size=15),
       axis.title=element_text(size=15, face="bold"),
       axis.text=element_text(size=13),
@@ -32,7 +37,7 @@ theme_gfx <- function(...) {
       #legend.title = element_blank(),
       ...
     )
-}
+  }
 
 #----------------
 # Get and prepare the data
@@ -40,21 +45,15 @@ theme_gfx <- function(...) {
 df <- read_csv("dfRTR.csv")
 head(df)
 
-#----Set up plot for print and online --------
-
-#dev.cur()
-#pdf(file="name.pdf", width = 7, height = 5)
-#png(filename = "name.png",width = 600, height = 500, units = "px")
-
 #-----Insert plot here -------------
 
-basebar <- ggplot(df) + 
+basebar <- ggplot(df) +
   aes(x = reorder(Year_Quarter, -sort), 
       y = Total_RTR, 
-      fill = factor(year)) +
+      fill = factor(year) ) +
   geom_bar(stat="identity") + 
   coord_flip() + theme_gfx()
-
+  
 # add all the titles.
 basebar <- basebar + labs(
   title="Response to resistance",
@@ -78,16 +77,27 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  size=5,
+  size=4.7,
+  family="Tahoma",
   fontface="bold",
   color="white"
   )
 
+# color scheme - comment out for B/W PDF
+basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
 # make B/W PDF - remember to change name of file!
-#basebar <- basebar + scale_colour_grey(start = 0, end = 0.65) + scale_fill_grey(start = 0, end = 0.65)
+#basebar <- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
 basebar
 
 #----- End plot --------------
 
-#dev.off()
+# save for PDF
+#ggsave("barPlot.pdf", width = 7, height = 5.5, device=cairo_pdf, units = c("in"), dpi = 300, limitsize = FALSE)
+
+# save for web
+ggsave("barPlot.png", width = 8.33, height = 6.5, device="png", units = c("in"), dpi = 72, limitsize = FALSE)
+
+
+#dev.cur() # Turns on a "device" for printing, usually the plot window by default
+#dev.off() # This turns off the "device." 

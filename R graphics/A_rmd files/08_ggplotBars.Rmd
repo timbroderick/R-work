@@ -231,17 +231,21 @@ Let's look at the final plot:
 # This function set styles for the chart
 # Be sure to run it before you plot
 theme_gfx <- function(...) {
-  theme_fivethirtyeight() +
+  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
-      plot.background = element_rect(fill = "white"),
-      legend.background = element_rect(fill = "white"),
-      panel.background=element_rect(fill="#E0E0E0"),
-      strip.background=element_rect(fill="#E0E0E0"),
+      plot.background = element_blank(),
+      legend.background = element_blank(),
+      panel.background=element_rect(fill="#E5E5E5"),
+      strip.background=element_rect(fill="#E5E5E5"),
+      # modify grid and tick lines
+      panel.grid.major = element_line(size = .6, color="#D2D2D2"),
+      panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
+      axis.ticks = element_blank(),
       # edit font sizes
       plot.title = element_text(size = 30,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(size=12, face="bold"),
+      legend.title=element_text(face="bold"),
       legend.text=element_text(size=15),
       axis.title=element_text(size=15, face="bold"),
       axis.text=element_text(size=13),
@@ -288,10 +292,14 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  size=5,
+  family="Tahoma", # set the font family
+  size=4.7, # slightly adjust the label size
   fontface="bold",
   color="white"
   )
+
+# Add a color scheme for the chart
+basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
 
 basebar
 
@@ -308,6 +316,8 @@ I'm not going to spend a lot of time going over the function. For it to be appli
 Then simply add __theme\_gfx()__ to the graphic.
 
 This style for the graphic is one we'll use in the future. At some point we may tweak it and store it as a local library that needs to be loaded in to your R scripts. But for now, it'll be one of the things at the top of each file.
+
+We've also set the font family for the bar labels, and added a new color scale with __basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")__
 
 Please feel free to explore more, either by typing ?theme or googling "ggplot2 theme."
 
