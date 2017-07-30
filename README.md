@@ -1,8 +1,16 @@
 # Rstats
-Learning how to do things with R stats. 
-Currently going through the basic Swirl course while viewing "R programming A-Z" at Udemy.
-FWIW, they seem to compliment each other quite well.
 
+### What's here
+
+* R graphics - these are guides created with R markdown that go through how to create basic plots with R, create publication-ready plots with ggplot2 and some mapping. Includes markdown files, R scripts and all the data to create the examples. 
+
+* R coursework - Files where I'm learning how to do things with R stats.Currently going through the basic Swirl course while viewing "R programming A-Z" at Udemy. FWIW, they seem to compliment each other quite well.
+
+* mapping - Experiments with mapping with R
+
+* resources - misc. tutorial resources
+
+* completed - completed and published graphics. I intend to do HTML guides for these as well - for now, they're annotated in the script.
 
 ### Installing R
 
