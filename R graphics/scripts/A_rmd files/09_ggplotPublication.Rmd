@@ -37,10 +37,14 @@ library(ggplot2)
 library(ggthemes)
 
 #---------------------
+# For windows devices only
+# windowsFonts(Verdana=windowsFont('Verdana'))
+
 # This function set styles for the chart
 # Be sure to run it before you plot
+
 theme_gfx <- function(...) {
-  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
+  theme_set(theme_get() + theme(text = element_text(family = 'Verdana', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
       plot.background = element_blank(),
@@ -52,14 +56,14 @@ theme_gfx <- function(...) {
       panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
       axis.ticks = element_blank(),
       # edit font sizes
-      plot.title = element_text(size = 30,face="bold"),
+      plot.title = element_text(size = 27,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(face="bold"),
-      legend.text=element_text(size=15),
+      legend.title=element_text(size = 13,face="bold"),
+      legend.text=element_text(size=14.7),
       axis.title=element_text(size=15, face="bold"),
-      axis.text=element_text(size=13),
-      plot.caption=element_text(size=13, hjust=0),
-      strip.text = element_text(face="bold", size=13, hjust=0),
+      axis.text=element_text(size=13.5),
+      plot.caption=element_text(size=13.5, hjust=0),
+      strip.text = element_text(face="bold", size=13.5, hjust=0),
       # This puts the legend across the top
       legend.position="top", 
       legend.direction="horizontal",
@@ -67,7 +71,7 @@ theme_gfx <- function(...) {
       #legend.title = element_blank(),
       ...
     )
-  }
+}
 
 #----------------
 # Get and prepare the data
@@ -107,14 +111,14 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  size=4.7,
-  family="Tahoma",
+  size=5,
+  family="Verdana",
   fontface="bold",
   color="white"
   )
 
 # color scheme - comment out for B/W PDF
-basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
+basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
 # make B/W PDF - remember to change name of file!
 #basebar <- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
@@ -123,11 +127,10 @@ basebar
 #----- End plot --------------
 
 # save for PDF
-ggsave("barPlot.pdf", width = 7, height = 5.5, device=cairo_pdf, units = c("in"), dpi = 300, limitsize = FALSE)
+#ggsave("barPlot.pdf", width = 7, height = 5.5, device=cairo_pdf, units = c("in"), dpi = 300, limitsize = FALSE)
 
 # save for web
-#ggsave("barPlot.png", width = 8.33, height = 6.5, device="png", units = c("in"), dpi = 72, limitsize = FALSE)
-
+#ggsave("barPlot.png", width = 7, height = 5.5, device="png", units = c("in"), dpi = 86, limitsize = FALSE)
 
 ```
 
@@ -135,6 +138,8 @@ The first thing we added is __library(Cairo)__. This library allows us to embed 
 
 
 ###Creating files for print
+
+First, if you're on a Windows machine, uncomment out the __windowsFonts__ line. That's necessary for the script to save a pdf in the way we need to.
 
 Now skip all the way to the bottom of the code and look for the first __ggsave__ line:
 
@@ -155,7 +160,7 @@ The other thing you may have to fiddle with are your text titles. They may run t
 
 Once you have color pdf, you need to make a black and white one. But this is simple - you only need to do three things:
 
-* Comment out the color scheme line: __#basebar <- basebar + scale\_colour_few(palette="medium") + scale\_fill\_few(palette="medium")__
+* Comment out the color scheme line: __#basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()__
 
 * Uncomment the grey scheme line: __basebar <- basebar + scale\_colour\_grey(start = 0, end = 0.75) + scale\_fill\_grey(start = 0, end = 0.75)__
 
@@ -165,19 +170,17 @@ Then run the script.
 
 ###Creating files for online
 
-The process for making a color png is similar to the pdf process. 
+The process for making a color png even simplier. 
 
 First, though, comment out the gray scheme line and the PDF ggsave line. You want the graphic to be color and you don't need to make pdfs anymore.
 
 Second, uncomment the png ggsave command:
 
-__ggsave("barPlot.png", width = 8.33, height = 6.5, device="png", units = c("in"), dpi = 72, limitsize = FALSE)__
+__ggsave("barPlot.png", width = 7, height = 6.5, device="png", units = c("in"), dpi = 86, limitsize = FALSE)__
 
-You'll notice that the __width__ is different for the png than for the pdf. That's because the pdf is for print and the png is for a computer screen. (It's way more complicated than that.)
+You'll notice that the __width__ is the same for the png than for the pdf, but the dpi is different. That's because the pdf is for print and the png is for a computer screen. (It's way more complicated than that.)
 
-Again, you'll need to play with the height a bit. You can kind of get an idea of the ratio you'll need from the pdf. But it's the same process: run the script, open and look at the png file until you're satisfied with the results.
-
-You may also play with line breaks for the titles. But you don't have to - they fit within the plot and you can read them. 
+But it does mean you can simply change the __height__ to match what you already worked out for the PDF and then run the ggsave command.
 
 And that's it. The PNG can be attached as an Asset to your story. The PDF can be placed on a page and size to be two columns. 
 

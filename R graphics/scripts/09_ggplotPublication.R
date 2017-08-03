@@ -7,10 +7,14 @@ library(ggplot2)
 library(ggthemes)
 
 #---------------------
+# Uncomment this for windows devices only
+# windowsFonts(Verdana=windowsFont('Verdana'))
+
 # This function set styles for the chart
 # Be sure to run it before you plot
+
 theme_gfx <- function(...) {
-  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
+  theme_set(theme_get() + theme(text = element_text(family = 'Verdana', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
       plot.background = element_blank(),
@@ -22,14 +26,14 @@ theme_gfx <- function(...) {
       panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
       axis.ticks = element_blank(),
       # edit font sizes
-      plot.title = element_text(size = 30,face="bold"),
+      plot.title = element_text(size = 27,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(face="bold"),
-      legend.text=element_text(size=15),
+      legend.title=element_text(size = 13,face="bold"),
+      legend.text=element_text(size=14.7),
       axis.title=element_text(size=15, face="bold"),
-      axis.text=element_text(size=13),
-      plot.caption=element_text(size=13, hjust=0),
-      strip.text = element_text(face="bold", size=13, hjust=0),
+      axis.text=element_text(size=13.5),
+      plot.caption=element_text(size=13.5, hjust=0),
+      strip.text = element_text(face="bold", size=13.5, hjust=0),
       # This puts the legend across the top
       legend.position="top", 
       legend.direction="horizontal",
@@ -37,7 +41,7 @@ theme_gfx <- function(...) {
       #legend.title = element_blank(),
       ...
     )
-  }
+}
 
 #----------------
 # Get and prepare the data
@@ -77,14 +81,14 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  size=4.7,
-  family="Tahoma",
+  size=5,
+  family="Verdana",
   fontface="bold",
   color="white"
   )
 
 # color scheme - comment out for B/W PDF
-basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
+basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
 # make B/W PDF - remember to change name of file!
 #basebar <- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
@@ -96,7 +100,7 @@ basebar
 #ggsave("barPlot.pdf", width = 7, height = 5.5, device=cairo_pdf, units = c("in"), dpi = 300, limitsize = FALSE)
 
 # save for web
-ggsave("barPlot.png", width = 8.33, height = 6.5, device="png", units = c("in"), dpi = 72, limitsize = FALSE)
+#ggsave("barPlot.png", width = 7, height = 5.5, device="png", units = c("in"), dpi = 86, limitsize = FALSE)
 
 
 #dev.cur() # Turns on a "device" for printing, usually the plot window by default

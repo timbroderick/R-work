@@ -1,15 +1,20 @@
 # The code in this file is described 
-# in the pdf and html files of the same name
+# in html files of the same name
 
 library(readr)
 library(ggplot2)
 library(ggthemes)
 
+
 #---------------------
+# For windows devices only
+windowsFonts(Verdana=windowsFont('Verdana'))
+
 # This function set styles for the chart
 # Be sure to run it before you plot
+
 theme_gfx <- function(...) {
-  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
+  theme_set(theme_get() + theme(text = element_text(family = 'Verdana', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
       plot.background = element_blank(),
@@ -21,14 +26,14 @@ theme_gfx <- function(...) {
       panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
       axis.ticks = element_blank(),
       # edit font sizes
-      plot.title = element_text(size = 30,face="bold"),
+      plot.title = element_text(size = 27,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(face="bold"),
-      legend.text=element_text(size=15),
+      legend.title=element_text(size = 13,face="bold"),
+      legend.text=element_text(size=14.7),
       axis.title=element_text(size=15, face="bold"),
-      axis.text=element_text(size=13),
-      plot.caption=element_text(size=13, hjust=0),
-      strip.text = element_text(face="bold", size=13, hjust=0),
+      axis.text=element_text(size=13.5),
+      plot.caption=element_text(size=13.5, hjust=0),
+      strip.text = element_text(face="bold", size=13.5, hjust=0),
       # This puts the legend across the top
       legend.position="top", 
       legend.direction="horizontal",
@@ -37,6 +42,7 @@ theme_gfx <- function(...) {
       ...
     )
 }
+
 
 #----------------
 # Get and prepare the data
@@ -79,19 +85,19 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  size=4.7,
-  family="Tahoma",
+  size=5,
+  family="Verdana",
   fontface="bold",
   color="white"
 )
 
-# color scheme - comment out for B/W PDF
-basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
+# color scheme
+basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
 
 basebar
 
 #----- End plot --------------
 
 # Grab the data we used and save it for later
-dfrtr <- subset(df, select = c("years","Year_Quarter","Total_RTR_incidents"))
+dfrtr <- subset(df, select = c("year","Year_Quarter","Total_RTR","sort"))
 write_csv(dfrtr,"dfRTR.csv")

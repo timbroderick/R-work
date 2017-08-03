@@ -1,19 +1,81 @@
-# The code in this file is described 
-# in html files of the same name
+---
+title: "11_ggplotStackedBars"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Stacked bar charts
+
+Let's use the data that we worked using the Tidyr library to create a stacked bar chart. 
+
+By stacked we mean bars stacked on each other that add up to a whole. And the data we'll be looking at - three categories of Response to Resistance incidents - is perfect for a stacked bar chart.
+
+First though, let's look at how we created a bar chart of total RTR incidents.
+
+```{r}
 
 # load the libraries 
 library(readr)
 library(ggplot2)
 library(ggthemes)
 
-# bring in the data we worked worked with
+# load the bar chart data
+df <- read_csv("dfRTR.csv")
+
+# create the chart
+
+basebar <- ggplot(df) +
+  aes(x = reorder(Year_Quarter, -sort), 
+      y = Total_RTR, 
+      fill = factor(year) ) +
+  geom_bar(stat="identity") + 
+  coord_flip()
+
+basebar
+
+```
+
+Not a lot to it, right?
+
+Now let's load in the data and create a stacked chart.
+
+```{r}
+
 df <- read_csv("dfsubset.csv")
 
+stacked <- ggplot(df) + 
+  aes(x = reorder(Year_Quarter, -sort), 
+      y = value, 
+      fill = set) + 
+  geom_bar(stat = "identity") + 
+  coord_flip()
 
+stacked
+
+```
+
+The only difference between the two commands is the nature of the data we loaded in and what we use for the y value and the fill value.
+
+For y, we use our "value" column which has all the numbers from the three categories of RTR incidents.
+
+For fill, we tell the plot to differentiate the numbers based on the value in the "set" column, which has the names of the three categories. GGplot knows to 
+
+* Group the bars by the X axis - Year_Quarter. We end up with three values for each year/quarter.
+
+* In each group, stack the three bars representing the three values. This is the default behavior for this command. If there was two values, we would have two stacked bars for each year/quarter. If there was only one, we'd have a single bar.
+
+* Fill the bars based on the value in "set." In this case, "Use of force" is colored blue.
+
+Everything else is just design, pretty much the same as what we used for the basebar plot.
+
+```{r}
 
 #---------------------
 # For windows devices only
-windowsFonts(Verdana=windowsFont('Verdana'))
+# windowsFonts(Verdana=windowsFont('Verdana'))
 
 # This function set styles for the chart
 # Be sure to run it before you plot
@@ -61,11 +123,11 @@ stacked <- ggplot(df) +
 
 # add all the titles.
 stacked <- stacked + labs(
-  title="Response to resistance", # your headline
-  subtitle="Elgin police have increased their use of\nnon-lethal force in response to resistance.",
+  title="Headline", # your headline
+  subtitle="Intro text",
   x="YEAR, QUARTER", 
   y="TYPES OF RESPONSE TO RESISTANCE",
-  caption="\nNote: Show of Force and Use of Force are incidents where \npolice only warned or only used force in repsonse to resistance. \nTransition is incidents where police showed then used force. \nSource: Elgin police") +
+  caption="\nNotes, credit and source line") +
   guides(fill=guide_legend(reverse=T))
 
 # Here's where we go further in formating the bar values
@@ -95,6 +157,13 @@ stacked <- stacked + scale_colour_tableau() + scale_fill_tableau()
 
 stacked
 
-#----- End plot --------------
+```
 
+We needed to make a minor edit in the __stacked <- stacked + geom_text(__ command for the y axis and label (both equal the column "value" instead of "Total_RTR" in the basebar plot.)
+
+But that's it!
+
+The only things left to do is settle on things like headlines and intro text, and then add in the code to create the three files needed for publications.
+
+Next: grouped bar charts.
 

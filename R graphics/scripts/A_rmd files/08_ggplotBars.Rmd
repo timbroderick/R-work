@@ -1,8 +1,8 @@
 ---
 title: "08_ggplotBars"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -42,6 +42,10 @@ basebar <- ggplot(df) +
 basebar
 
 ```
+
+And that's it. That's all you need to do to create a bar chart. Everything after this bit of code is about the design of the chart - colors, labels, headlines and such.
+
+Here's what the code does:
 
 __basebar <-__ is the variable that stores the chart commands. This way we're not generating charts in the plot window until we call it.
 
@@ -228,10 +232,12 @@ Let's look at the final plot:
 ```{r}
 
 #---------------------
+
 # This function set styles for the chart
 # Be sure to run it before you plot
+
 theme_gfx <- function(...) {
-  theme_set(theme_get() + theme(text = element_text(family = 'Tahoma', size= 12, lineheight=0.9))) + 
+  theme_set(theme_get() + theme(text = element_text(family = 'Verdana', size= 12, lineheight=0.9))) + 
     theme(
       # edit background colors
       plot.background = element_blank(),
@@ -243,14 +249,14 @@ theme_gfx <- function(...) {
       panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
       axis.ticks = element_blank(),
       # edit font sizes
-      plot.title = element_text(size = 30,face="bold"),
+      plot.title = element_text(size = 27,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.title=element_text(face="bold"),
-      legend.text=element_text(size=15),
+      legend.title=element_text(size = 13,face="bold"),
+      legend.text=element_text(size=14.7),
       axis.title=element_text(size=15, face="bold"),
-      axis.text=element_text(size=13),
-      plot.caption=element_text(size=13, hjust=0),
-      strip.text = element_text(face="bold", size=13, hjust=0),
+      axis.text=element_text(size=13.5),
+      plot.caption=element_text(size=13.5, hjust=0),
+      strip.text = element_text(face="bold", size=13.5, hjust=0),
       # This puts the legend across the top
       legend.position="top", 
       legend.direction="horizontal",
@@ -292,14 +298,14 @@ basebar <- basebar + geom_text(
       y = Total_RTR - (Total_RTR * 0.025), 
       hjust = 1,
       label = Total_RTR),
-  family="Tahoma", # set the font family
-  size=4.7, # slightly adjust the label size
+  family="Verdana", # set the font family
+  size=5,
   fontface="bold",
   color="white"
   )
 
 # Add a color scheme for the chart
-basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")
+basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
 
 basebar
 
@@ -317,7 +323,9 @@ Then simply add __theme\_gfx()__ to the graphic.
 
 This style for the graphic is one we'll use in the future. At some point we may tweak it and store it as a local library that needs to be loaded in to your R scripts. But for now, it'll be one of the things at the top of each file.
 
-We've also set the font family for the bar labels, and added a new color scale with __basebar <- basebar + scale_colour_few(palette="medium") + scale_fill_few(palette="medium")__
+Not included here is the __windowsFonts__ line. It's necessary for windows computers to recognize the font we want to use. It'll throw an error on Mac computers, but that can be ignored.
+
+We've also set the font family for the bar labels, and added a new color scale with __basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()__
 
 Please feel free to explore more, either by typing ?theme or googling "ggplot2 theme."
 
