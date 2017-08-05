@@ -2,11 +2,25 @@
 
 ## What's here
 
-* Tutorials for learning to do graphics in R. These html guides start with the basic plots in R and move to doing them with ggplot2.
+In this folder are step-by-step tutorials for learning to do graphics in R. These are html files, which means you should be able to open them in a browser window and even print them if you want.
 
-* Data, associated scripts and markdown files are included in the scripts folder.
+These guides assume you've installed R and R Studio, and have done some of the first Swirl tutorials. If you haven't, skip down to the "Learning R" section of this readme file to find links and advice on getting up and running.
 
-* Completed folder includes graphics that have been done and published. If there's time, I'll do an html tutorial for those as well but at the least they'll be heavily annotated.
+* From 01 to 06, we look at R's basic plotting tools. For exploring data yourself, or just for practice, these are good to know. However, their design isn't great for print or online. And, it takes some work to get a decent graphic out of them. 
+
+* At 07, we start working with ggplot2, the R graphics library that takes a sophisticated approach to graphics. 08_qplot is part of ggplot - q stands for quick, and it's meant to create quick visualizations that help you understand the data. Qplot is an excellent way of quickly looking at your data, and it's a lot easier to use than the basic plots. Along with ggplot2, qplot should replace all those basic plots.
+
+* From 08 through 14, we learn to create the most common graphic types - bar charts, stacked bar charts, grouped bar charts, line and area charts. We also learn how to create color and black-and-white pdfs suitable for print publication and color png files for online. 
+
+* 15 demonstrates how to explore relationships between data using qplot scatter plots and finally creating a publication-ready scatter plot that shows what we found.
+
+* From 16 on, we'll show how to do some less used graphic types like box plots and heat maps.
+
+* Finally, M01 and on looks at R's ability to do maps - specifically choropleth maps.
+
+In addition to the html files, in the folder called "scripts" there are the  scripts and data associated with each tutorial as well as the markdown files assocated with each html file.
+
+In the folder called "Completed" are graphics that have been done and published. At some point, we'll an html tutorial for those as well but at the least they'll be heavily annotated.
 
 All these files are geared to creating publication-quality for the web and print - specifically two-column wide graphics for the Daily Herald. The tutorials are part of our effort to give our staff the opportunity to develop new skills.
 

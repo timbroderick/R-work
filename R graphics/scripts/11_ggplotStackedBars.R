@@ -13,7 +13,7 @@ df <- read_csv("dfsubset.csv")
 
 #---------------------
 # For windows devices only
-windowsFonts(Verdana=windowsFont('Verdana'))
+# windowsFonts(Verdana=windowsFont('Verdana'))
 
 # This function set styles for the chart
 # Be sure to run it before you plot

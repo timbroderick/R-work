@@ -9,9 +9,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Aside from this document (00_Introduction), this series of pdfs and html documents correspond to R scripts of the same name. 01_basicHist.pdf describes in detail what you'll see in 01_basicHist.R and so on. This allows us keep the annotations in the R script fairly light and allows you to have this pdf open or printed out while you work with the script.
+Aside from this document (00_Introduction), this series of pdfs and html documents correspond to R scripts of the same name. 01_basicHist.html describes in detail what you'll see in 01_basicHist.R and so on. This allows us keep the annotations in the R script fairly light and allows you to have this pdf open or printed out while you work with the script.
 
-The idea is that while you're working with the R scripts, you can have a printout of the PDF to refer to or have the html file open in a browser window. The html files can be printed too. Use whatever works best for you.
+The idea is that while you're working with the R scripts, you can have the html file open in a browser window. The html files can be printed too. Use whatever works best for you.
 
 If you need some assistance with these, please let me know. 
 
@@ -45,13 +45,17 @@ And sometimes, it's really complicated. All these files were created using R ver
 
 These guides assume you've installed R and R Studio, and have done some of the first Swirl tutorials. 
 
-* From 01 to 07, you'll be working with R's basic plots. For exploring data yourself, these are good tools to know. However, their design isn't great for print or online. And, it takes some work to get a decent graphic out of them. But these are also good exercises for understanding R, so try hard to work through them.
+* From 01 to 06, we look at R's basic plotting tools. For exploring data yourself, or just for practice, these are good to know. However, their design isn't great for print or online. And, it takes some work to get a decent graphic out of them. 
 
-* At 08, we start working with ggplot2, the R graphics library that takes a sophisticated approach to graphics. 08_qplot is part of ggplot - q stands for quick, and it's meant to create quick visualizations that help you understand the data. Qplot is an excellent way of quickly looking at your data, and it's a lot easier to use than the basic plots. Along with ggplot2, qplot should replace all those basic plots.
+* At 07, we start working with ggplot2, the R graphics library that takes a sophisticated approach to graphics. 08_qplot is part of ggplot - q stands for quick, and it's meant to create quick visualizations that help you understand the data. Qplot is an excellent way of quickly looking at your data, and it's a lot easier to use than the basic plots. Along with ggplot2, qplot should replace all those basic plots.
 
-* 09 on looks at the various graphic types available through ggplot. You'll also learn to export your work for publication. 
+* From 08 through 14, we learn to create the most common graphic types - bar charts, stacked bar charts, grouped bar charts, line and area charts. We also learn how to create color and black-and-white pdfs suitable for print publication and color png files for online. 
 
-* Finally, M01 and on looks at R's ability to do maps - specifically choropleth maps. Mapping is different from anything you've done before, so work with R a bit before you tackle it. 
+* 15 demonstrates how to explore relationships between data using qplot scatter plots and finally creating a publication-ready scatter plot that shows what we found.
+
+* From 16 on, we'll show how to do some less used graphic types like box plots and heat maps.
+
+* Finally, M01 and on looks at R's ability to do maps - specifically choropleth maps. 
 
 ##If you want to skip the rest of this, go ahead
 

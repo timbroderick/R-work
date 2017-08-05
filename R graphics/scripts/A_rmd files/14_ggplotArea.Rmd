@@ -1,5 +1,19 @@
-# The code in this file is described 
-# in html files of the same name
+---
+title: "14_ggplotArea"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Area plots
+
+An area plot is kind of the line chart version of stacked bar charts. 
+
+Let's look at our chart again.
+
+```{r}
 
 # load the libraries 
 library(readr)
@@ -9,7 +23,46 @@ library(ggthemes)
 # bring in the data we worked worked with
 df <- read_csv("dfsubset.csv")
 
+pLine <- ggplot(df) +
+  aes(x = Year_Quarter, 
+      y = value, 
+      group = set, 
+      color = set) +
+  geom_line(stat="identity", 
+            size = 1.5) + 
+  geom_point(stat="identity", 
+             size = 3,
+             shape=21,
+             fill="white")
 
+pLine
+
+```
+
+Now let's use the same data and create an area chart.
+
+```{r}
+
+pArea <- ggplot(df) +
+  aes(x = Year_Quarter, 
+      y = value, 
+      group = set, 
+      fill = set) +
+  geom_area(stat="identity")
+
+pArea
+
+```
+
+Note the scale on the left of both charts. The line chart goes from 0 to about 40, while the area chart goes from 0 to about 60.
+
+The each individual line in the line chart shows the actual value of each category. The area chart does the same, but stacks those areas on top of each other so you can see the total.
+
+The two differences between the charts is using __geom_area__ and setting __fill__ (for the fill of each area) instead of __color__ (which would be for a line).
+
+And, as we've seen before, the rest of the code is about design.
+
+```{r}
 
 #---------------------
 # For windows devices only
@@ -50,45 +103,47 @@ theme_gfx <- function(...) {
 
 #-----Insert plot here -------------
 
-pLine <- ggplot(df) +
+pArea <- ggplot(df) +
   aes(x = Year_Quarter, 
       y = value, 
       group = set, 
-      color = set) +
-  geom_line(stat="identity", 
-            size = 1.5) + 
-  geom_point(stat="identity", 
-             size = 3,
-             shape=21,
-             fill="white") + 
+      fill = set) +
+  geom_area(stat="identity") + 
   theme_gfx()
 
 # Let's customize the x scale
 # Remember \n = a line break
-pLine <- pLine + scale_x_discrete(
+pArea <- pArea + scale_x_discrete(
   labels=c("1Q\n2014","2Q","3Q","4Q","1Q\n2015","2Q","3Q","4Q","1Q\n2016","2Q","3Q","4Q")
 )
 
 # Let's also customize the y scale
 # we set the min and max, then where breaks should be
-pLine <- pLine + 
-  scale_y_continuous(breaks=c(seq(0,40,5)) )
+pArea <- pArea + 
+  scale_y_continuous(breaks=c(seq(0,60,5)) )
 
 # add all the titles.
-pLine <- pLine + labs(
-  title="Response to resistance", # your headline
-  subtitle="Elgin police have increased their use of\nnon-lethal force in response to resistance.",
+pArea <- pArea + labs(
+  title="Headline", 
+  subtitle="Intro.",
   x="YEAR, QUARTER", 
   y="NUMBER PER QUARTER",
-  caption="\nNote: Show of Force and Use of Force are incidents where \npolice only warned or only used force in repsonse to resistance. \nTransition is incidents where police showed then used force. \nSource: Elgin police")
+  caption="\nNote, credit and source line")
 
 # color scheme - comment out for B/W PDF
-pLine <- pLine + scale_colour_tableau() + scale_fill_tableau()
+pArea <- pArea + scale_colour_tableau() + scale_fill_tableau()
 # make B/W PDF - remember to change name of file!
-#pLine <- pLine + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
+#pArea <- pArea + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
-pLine
+pArea
+
+```
+
+The only additional change from our line chart is adjusting the y scale to 0-60.
+
+Next: scatter plots.
 
 
-#----- End plot --------------
+
+
 
