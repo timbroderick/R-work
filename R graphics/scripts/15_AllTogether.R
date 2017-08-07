@@ -157,7 +157,9 @@ officer <- ggplot(dfLook) +
                fill=factor(year) )
   ) +
   geom_smooth(method=lm,se=FALSE) +
-  theme_gfx()
+  theme_gfx() +
+  scale_y_continuous(limits = c(0, 10), breaks=c(seq(0,10,2)) ) #+
+  #scale_x_continuous(limits = c(0, 44), breaks=c(seq(0,44,2)) )
 
 # add all the titles.
 officer <- officer + 
@@ -166,8 +168,8 @@ officer <- officer +
     subtitle="Intro",
     x="USE OF FORCE INCIDENTS",
     y="INJURIES TO OFFICERS",
-    caption="\nSource: Elgin police") +
-  scale_y_continuous(breaks=c(seq(0,10,2)) )
+    caption="\nSource: Elgin police")
+
 
 # color scheme - comment out for B/W PDF
 officer <- officer + scale_colour_tableau() + scale_fill_tableau()

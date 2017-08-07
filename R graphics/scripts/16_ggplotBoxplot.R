@@ -6,32 +6,40 @@
 
 # as always, read the data in
 library(readr)
+library(ggplot2)
+library(ggthemes)
+
 df <- read_csv("homeExem.csv")
 
 # take a look at it
 names(df)
 summary(df)
 
-# load in ggplot and themes
-library(ggplot2)
-library(ggthemes)
-
-
 #---------------------
 # This function set styles for the chart
 # Be sure to run it before you plot
 
 theme_gfx <- function(...) {
-  theme_fivethirtyeight() +
+  theme_set(theme_get() + theme(text = element_text(family = 'Verdana', size= 12, lineheight=0.9))) + 
     theme(
-      plot.background = element_rect(fill = "white"),
-      legend.background = element_rect(fill = "white"),
-      plot.title = element_text(size = 30),
+      # edit background colors
+      plot.background = element_blank(),
+      legend.background = element_blank(),
+      panel.background=element_rect(fill="#E5E5E5"),
+      strip.background=element_rect(fill="#E5E5E5"),
+      # modify grid and tick lines
+      panel.grid.major = element_line(size = .6, color="#D2D2D2"),
+      panel.grid.minor = element_line(size = .6, color="#D2D2D2", linetype = "dashed"),
+      axis.ticks = element_blank(),
+      # edit font sizes
+      plot.title = element_text(size = 27,face="bold"),
       plot.subtitle = element_text(size = 18),
-      legend.text=element_text(size=15),
+      #legend.title=element_text(size = 13,face="bold"),
+      legend.text=element_text(size=14.7),
       axis.title=element_text(size=15, face="bold"),
-      axis.text=element_text(size=13),
-      plot.caption=element_text(size=12, hjust=0),
+      axis.text=element_text(size=13.5),
+      plot.caption=element_text(size=13.5, hjust=0),
+      strip.text = element_text(face="bold", size=13.5, hjust=0),
       # This puts the legend across the top
       legend.position="top", 
       legend.direction="horizontal",
@@ -40,12 +48,6 @@ theme_gfx <- function(...) {
       ...
     )
 }
-
-#----Set up plot for print and online --------
-
-#dev.cur()
-#pdf(file="ggplotBox.pdf", width = 7, height = 6.75) 
-#png(filename = "ggplotBox.png",width = 600, height = 500, units = "px")
 
 #-----Insert plot here -------------
 
@@ -68,7 +70,8 @@ boxgfx <- ggplot(df) +
       ) + 
   geom_boxplot() + 
   theme_gfx() + 
-  geom_jitter() 
+  geom_jitter()  +
+  scale_y_continuous( limits = c(0, 100), breaks=c( seq( 0,100,10 ) ) )
 # Jitter just takes all the dots and spaces them out
 # so they don't overlap and you can see them all
 
@@ -83,6 +86,11 @@ boxgfx <- boxgfx + labs(
 # in this case, there's no need for a legend
 boxgfx <- boxgfx + 
   theme(legend.position="None")
+
+# color scheme - comment out for B/W PDF
+boxgfx <- boxgfx + scale_colour_tableau() + scale_fill_tableau()
+# make B/W PDF - remember to change name of file!
+#boxgfx <- boxgfx + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
 boxgfx
 

@@ -356,7 +356,9 @@ officer <- ggplot(dfLook) +
                fill=factor(year) )
   ) +
   geom_smooth(method=lm,se=FALSE) +
-  theme_gfx()
+  theme_gfx() +
+  scale_y_continuous(limits = c(0, 10), breaks=c(seq(0,10,2)) ) #+
+  #scale_x_continuous(limits = c(0, 44), breaks=c(seq(0,44,2)) )
 
 # add all the titles.
 officer <- officer + 
@@ -365,8 +367,7 @@ officer <- officer +
     subtitle="Intro",
     x="USE OF FORCE INCIDENTS",
     y="INJURIES TO OFFICERS",
-    caption="\nSource: Elgin police") +
-  scale_y_continuous(breaks=c(seq(0,10,2)) )
+    caption="\nSource: Elgin police")
 
 # color scheme - comment out for B/W PDF
 officer <- officer + scale_colour_tableau() + scale_fill_tableau()
@@ -383,9 +384,9 @@ We used factor(year) on both __color__ and __fill__. _Color_ makes the outline f
 
 The other thing we did is hide the confidence interval around the trendline with __geom_smooth(method=lm,se=FALSE)__. With so few data points,the interval didn't add much. Plus we'd have to explain it in an extensive note.
 
-As far as what the chart shows, the intro could be something like this:
+Finally, although we adjusted the y axis we did not do the same for the x axis. Does it need the zero point or is the labeling on there clear enough? 
 
-In spite of officers increasing their use of hand-to-hand techniques in response to resistance, the number of officers injured has not increased at the same rate.
+As far as what the chart shows, the intro could be something like this: In spite of officers increasing their use of hand-to-hand techniques in response to resistance, the number of officers injured has not increased at the same rate.
 
 ###Try it yourself
 
