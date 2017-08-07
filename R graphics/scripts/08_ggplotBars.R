@@ -92,7 +92,7 @@ basebar <- basebar + geom_text(
 )
 
 # color scheme
-basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
+basebar <- basebar + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
 
 basebar
 

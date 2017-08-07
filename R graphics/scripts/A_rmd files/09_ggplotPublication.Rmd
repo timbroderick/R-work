@@ -118,7 +118,7 @@ basebar <- basebar + geom_text(
   )
 
 # color scheme - comment out for B/W PDF
-basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()
+basebar <- basebar + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
 # make B/W PDF - remember to change name of file!
 #basebar <- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
@@ -160,7 +160,7 @@ The other thing you may have to fiddle with are your text titles. They may run t
 
 Once you have color pdf, you need to make a black and white one. But this is simple - you only need to do three things:
 
-* Comment out the color scheme line: __#basebar <- basebar + scale_colour_tableau() + scale_fill_tableau()__
+* Comment out the color scheme line: __#basebar <- basebar + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )__
 
 * Uncomment the grey scheme line: __basebar <- basebar + scale\_colour\_grey(start = 0, end = 0.75) + scale\_fill\_grey(start = 0, end = 0.75)__
 

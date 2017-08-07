@@ -91,6 +91,12 @@ grouped <- grouped + scale_x_discrete(
   labels=c("4Q","3Q","2Q","2016 1Q","4Q","3Q","2Q","2015 1Q","4Q","3Q","2Q","2014 1Q")
 )
 
+# color scheme - comment out for B/W PDF
+grouped <- grouped + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
+
+# make B/W PDF - remember to change name of file!
+#grouped <- grouped + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
+
 grouped
 
 #----- End plot --------------

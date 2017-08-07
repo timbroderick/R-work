@@ -83,7 +83,7 @@ pLine <- pLine + labs(
   caption="\nNote: Show of Force and Use of Force are incidents where \npolice only warned or only used force in repsonse to resistance. \nTransition is incidents where police showed then used force. \nSource: Elgin police")
 
 # color scheme - comment out for B/W PDF
-pLine <- pLine + scale_colour_tableau() + scale_fill_tableau()
+pLine <- pLine + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
 # make B/W PDF - remember to change name of file!
 #pLine <- pLine + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 

@@ -221,7 +221,7 @@ basebar &lt;- basebar + geom_text(
   )
 
 # color scheme - comment out for B/W PDF
-basebar &lt;- basebar + scale_colour_tableau() + scale_fill_tableau()
+basebar &lt;- basebar + scale_colour_manual( values = c(&quot;#0063A5&quot;, &quot;#DE731D&quot;, &quot;#009964&quot;, &quot;#DA2128&quot;, &quot;#6F2C91&quot;) ) + scale_fill_manual( values = c(&quot;#0063A5&quot;, &quot;#DE731D&quot;, &quot;#009964&quot;, &quot;#DA2128&quot;, &quot;#6F2C91&quot;) )
 # make B/W PDF - remember to change name of file!
 #basebar &lt;- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
@@ -248,7 +248,7 @@ basebar
 <p>The other thing you may have to fiddle with are your text titles. They may run too long on some lines so you might need to adjust the \n line breaks. Again, it’s a process of running the script and then looking at the PDF.</p>
 <p>Once you have color pdf, you need to make a black and white one. But this is simple - you only need to do three things:</p>
 <ul>
-<li><p>Comment out the color scheme line: <strong>#basebar &lt;- basebar + scale_colour_tableau() + scale_fill_tableau()</strong></p></li>
+<li><p>Comment out the color scheme line: <strong>#basebar &lt;- basebar + scale_colour_manual( values = c(“#0063A5”, “#DE731D”, “#009964”, “#DA2128”, “#6F2C91”) ) + scale_fill_manual( values = c(“#0063A5”, “#DE731D”, “#009964”, “#DA2128”, “#6F2C91”) )</strong></p></li>
 <li><p>Uncomment the grey scheme line: <strong>basebar &lt;- basebar + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)</strong></p></li>
 <li><p>Change the name of the pdf to something like <strong>barPlot_BW.pdf</strong>. If you forget to do this, you’ll overwrite your color version.</p></li>
 </ul>

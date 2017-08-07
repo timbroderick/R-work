@@ -8,6 +8,7 @@
 library(readr)
 library(ggplot2)
 library(ggthemes)
+library(Cairo)
 
 df <- read_csv("homeExem.csv")
 
@@ -88,13 +89,17 @@ boxgfx <- boxgfx +
   theme(legend.position="None")
 
 # color scheme - comment out for B/W PDF
-boxgfx <- boxgfx + scale_colour_tableau() + scale_fill_tableau()
+boxgfx <- boxgfx + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
+
 # make B/W PDF - remember to change name of file!
 #boxgfx <- boxgfx + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
 boxgfx
 
 #----- End plot --------------
-# Uncomment the line below when saving pdfs or pngs
-#dev.off() 
 
+# save for PDF - adjust height
+#ggsave("boxplot.pdf", width = 7, height = 7, device=cairo_pdf, units = c("in"), dpi = 300, limitsize = FALSE)
+#dev.off()
+# save for web - adjust height
+#ggsave("boxplot.png", width = 7, height = 7, device="png", units = c("in"), dpi = 86, limitsize = FALSE)

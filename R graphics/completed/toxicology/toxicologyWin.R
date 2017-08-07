@@ -131,7 +131,7 @@ stacked <- stacked + geom_text(
 
 
 # color scheme - comment out for B/W PDF
-stacked <- stacked + scale_colour_tableau() + scale_fill_tableau()
+stacked <- stacked + scale_colour_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") ) + scale_fill_manual( values = c("#0063A5", "#DE731D", "#009964", "#DA2128", "#6F2C91") )
 # make B/W PDF - remember to change name of file!
 #stacked <- stacked + scale_colour_grey(start = 0, end = 0.75) + scale_fill_grey(start = 0, end = 0.75)
 
